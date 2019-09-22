@@ -73,11 +73,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="seo_keywords">СЕО ключевики</label>
-                                                <input type="text" name="seo_keywords" id="seo_keywords" placeholder="СЕО Ключевики" class="form-control" value="{{ old('seo_keywords') }}">
+                                                <textarea class="form-control" name="seo_keywords" id="seo_keywords" rows="5" placeholder="SEO Ключевики">{{ old('seo_keywords') }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="seo_description">СЕО описание</label>
-                                                <input type="text" name="seo_description" id="seo_description" placeholder="СЕО описание" class="form-control" value="{{ old('seo_description') }}">
+                                                <textarea class="form-control" name="seo_description" id="seo_description" rows="5" placeholder="SEO Description">{{ old('seo_description') }}</textarea>
                                             </div>
                                         </div>
                                     </div>

@@ -43,20 +43,4 @@ interface ArticleRepositoryInterface extends BaseRepositoryInterface
     public function saveCoverImage(UploadedFile $file) : string;
 
     public function saveArticleImages(Collection $collection);
-
-    public function saveArticleAttributes(ArticleAttribute $articleAttribute) : ArticleAttribute;
-
-    public function listArticleAttributes() : Collection;
-
-    public function removeArticleAttribute(ArticleAttribute $articleAttribute) : ?bool;
-
-    public function saveCombination(ArticleAttribute $articleAttribute, AttributeValue ...$attributeValues) : Collection;
-
-    public function listCombinations() : Collection;
-
-    public function findArticleCombination(ArticleAttribute $attribute);
-
-    public function saveBrand(Brand $brand);
-
-    public function findBrand();
 }

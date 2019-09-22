@@ -197,12 +197,7 @@ class ArticleController extends Controller
             'article' => $article,
             'images' => $article->images()->get(['src']),
             'sections' => $sections,
-            'selectedIds' => $article->sections()->pluck('section_id')->all(),
-            'attributes' => $this->attributeRepo->listAttributes(),
-            'brands' => $this->brandRepo->listBrands(['*'], 'name', 'asc'),
-            'weight' => $article->weight,
-            'default_weight' => $article->mass_unit,
-            'weight_units' => Article::MASS_UNIT
+            'selectedIds' => $article->sections()->pluck('section_id')->all()
         ]);
     }
 
@@ -266,13 +261,6 @@ class ArticleController extends Controller
     {
         $article = $this->articleRepo->findArticleById($id);
         $article->sections()->sync([]);
-        $articleAttr = $article->attributes();
-
-        $articleAttr->each(function ($pa) {
-            DB::table('attribute_value_article_attribute')->where('article_attribute_id', $pa->id)->delete();
-        });
-
-        $articleAttr->where('article_id', $article->id)->delete();
 
         $articleRepo = new ArticleRepository($article);
         $articleRepo->removeArticle();
