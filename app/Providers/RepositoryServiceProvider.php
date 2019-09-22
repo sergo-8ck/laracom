@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Blog\ArticleAttributes\Repositories\ArticleAttributeRepository;
+use App\Blog\ArticleAttributes\Repositories\ArticleAttributeRepositoryInterface;
+use App\Blog\Articles\Repositories\ArticleRepository;
+use App\Blog\Articles\Repositories\Interfaces\ArticleRepositoryInterface;
+use App\Blog\Sections\Repositories\Interfaces\SectionRepositoryInterface;
+use App\Blog\Sections\Repositories\SectionRepository;
 use App\Shop\Addresses\Repositories\AddressRepository;
 use App\Shop\Addresses\Repositories\Interfaces\AddressRepositoryInterface;
 use App\Shop\Attributes\Repositories\AttributeRepository;
@@ -69,6 +75,11 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            ArticleAttributeRepositoryInterface::class,
+            ArticleAttributeRepository::class
+        );
+
+        $this->app->bind(
             AttributeValueRepositoryInterface::class,
             AttributeValueRepository::class
         );
@@ -94,8 +105,18 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            ArticleRepositoryInterface::class,
+            ArticleRepository::class
+        );
+
+        $this->app->bind(
             CategoryRepositoryInterface::class,
             CategoryRepository::class
+        );
+
+        $this->app->bind(
+            SectionRepositoryInterface::class,
+            SectionRepository::class
         );
 
         $this->app->bind(

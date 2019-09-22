@@ -37,8 +37,9 @@ class Article extends Model implements Buyable
      */
     protected $searchable = [
         'columns' => [
-            'products.name' => 10,
-            'products.description' => 5
+            'articles.name' => 10,
+            'articles.description' => 5,
+            'articles.content' => 5
         ]
     ];
 
@@ -48,21 +49,16 @@ class Article extends Model implements Buyable
      * @var array
      */
     protected $fillable = [
-        'sku',
         'name',
+        'title',
+        'title_h1',
         'description',
+        'content',
+        'seo_keywords',
+        'seo_description',
         'cover',
-        'quantity',
-        'price',
-        'brand_id',
+        'background',
         'status',
-        'weight',
-        'mass_unit',
-        'status',
-        'sale_price',
-        'length',
-        'width',
-        'height',
         'distance_unit',
         'slug',
     ];
@@ -74,9 +70,9 @@ class Article extends Model implements Buyable
      */
     protected $hidden = [];
 
-    public function categories()
+    public function sections()
     {
-        return $this->belongsToMany(Section::class);
+        return $this->belongsToMany(Section::class, 'section_article');
     }
 
     /**
@@ -124,7 +120,7 @@ class Article extends Model implements Buyable
      * @param string $term
      * @return Collection
      */
-    public function searchProduct(string $term) : Collection
+    public function searchArticle(string $term) : Collection
     {
         return self::search($term)->get();
     }

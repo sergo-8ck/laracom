@@ -8,21 +8,21 @@ use App\Blog\Articles\Article;
 class ArticleImageRepository extends BaseRepository
 {
     /**
-     * ProductImageRepository constructor.
+     * ArticleImageRepository constructor.
      *
-     * @param ArticleImage $productImage
+     * @param ArticleImage $articleImage
      */
-    public function __construct(ArticleImage $productImage)
+    public function __construct(ArticleImage $articleImage)
     {
-        parent::__construct($productImage);
-        $this->model = $productImage;
+        parent::__construct($articleImage);
+        $this->model = $articleImage;
     }
 
     /**
      * @return mixed
      */
-    public function findProduct() : Article
+    public function findArticle() : Article
     {
-        return $this->model->product;
+        return $this->model->article;
     }
 }

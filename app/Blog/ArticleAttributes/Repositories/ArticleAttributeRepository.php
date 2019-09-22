@@ -10,14 +10,14 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class ArticleAttributeRepository extends BaseRepository implements ArticleAttributeRepositoryInterface
 {
     /**
-     * ProductAttributeRepository constructor.
+     * ArticleAttributeRepository constructor.
      *
-     * @param ArticleAttribute $productAttribute
+     * @param ArticleAttribute $articleAttribute
      */
-    public function __construct(ArticleAttribute $productAttribute)
+    public function __construct(ArticleAttribute $articleAttribute)
     {
-        parent::__construct($productAttribute);
-        $this->model = $productAttribute;
+        parent::__construct($articleAttribute);
+        $this->model = $articleAttribute;
     }
 
     /**
@@ -26,7 +26,7 @@ class ArticleAttributeRepository extends BaseRepository implements ArticleAttrib
      * @return mixed
      * @throws ArticleAttributeNotFoundException
      */
-    public function findProductAttributeById(int $id)
+    public function findArticleAttributeById(int $id)
     {
         try {
             return $this->findOneOrFail($id);

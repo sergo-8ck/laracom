@@ -18,7 +18,7 @@ class ArticleAttribute extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function product()
+    public function section()
     {
         return $this->belongsTo(Article::class);
     }

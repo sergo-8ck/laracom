@@ -18,8 +18,14 @@ class Section extends Model
     protected $fillable = [
         'name',
         'slug',
+        'title',
+        'title_h1',
         'description',
+        'content',
+        'seo_keyword',
+        'seo_description',
         'cover',
+        'background',
         'status',
         'parent_id'
     ];
@@ -31,8 +37,8 @@ class Section extends Model
      */
     protected $hidden = [];
 
-    public function products()
+    public function articles()
     {
-        return $this->belongsToMany(Article::class);
+        return $this->belongsToMany(Article::class, 'section_article');
     }
 }

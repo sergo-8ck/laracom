@@ -30,6 +30,26 @@ class EmployeesTableSeeder extends Seeder
             'display_name' => 'Delete product'
         ]);
 
+        $createArticlePerm = factory(Permission::class)->create([
+            'name' => 'create-article',
+            'display_name' => 'Create article'
+        ]);
+
+        $viewArticlePerm = factory(Permission::class)->create([
+            'name' => 'view-article',
+            'display_name' => 'View article'
+        ]);
+
+        $updateArticlePerm = factory(Permission::class)->create([
+            'name' => 'update-article',
+            'display_name' => 'Update article'
+        ]);
+
+        $deleteArticlePerm = factory(Permission::class)->create([
+            'name' => 'delete-article',
+            'display_name' => 'Delete article'
+        ]);
+
         $updateOrderPerm = factory(Permission::class)->create([
             'name' => 'update-order',
             'display_name' => 'Update order'
@@ -49,6 +69,10 @@ class EmployeesTableSeeder extends Seeder
         $roleSuperRepo->attachToPermission($viewProductPerm);
         $roleSuperRepo->attachToPermission($updateProductPerm);
         $roleSuperRepo->attachToPermission($deleteProductPerm);
+        $roleSuperRepo->attachToPermission($createArticlePerm);
+        $roleSuperRepo->attachToPermission($viewArticlePerm);
+        $roleSuperRepo->attachToPermission($updateArticlePerm);
+        $roleSuperRepo->attachToPermission($deleteArticlePerm);
         $roleSuperRepo->attachToPermission($updateOrderPerm);
 
         $employee->roles()->save($super);
@@ -67,6 +91,10 @@ class EmployeesTableSeeder extends Seeder
         $roleAdminRepo->attachToPermission($viewProductPerm);
         $roleAdminRepo->attachToPermission($updateProductPerm);
         $roleAdminRepo->attachToPermission($deleteProductPerm);
+        $roleAdminRepo->attachToPermission($createArticlePerm);
+        $roleAdminRepo->attachToPermission($viewArticlePerm);
+        $roleAdminRepo->attachToPermission($updateArticlePerm);
+        $roleAdminRepo->attachToPermission($deleteArticlePerm);
         $roleAdminRepo->attachToPermission($updateOrderPerm);
 
         $employee->roles()->save($admin);
@@ -84,6 +112,9 @@ class EmployeesTableSeeder extends Seeder
         $roleClerkRepo->attachToPermission($createProductPerm);
         $roleClerkRepo->attachToPermission($viewProductPerm);
         $roleClerkRepo->attachToPermission($updateProductPerm);
+        $roleClerkRepo->attachToPermission($createArticlePerm);
+        $roleClerkRepo->attachToPermission($viewArticlePerm);
+        $roleClerkRepo->attachToPermission($updateArticlePerm);
 
         $employee->roles()->save($clerk);
     }

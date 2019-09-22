@@ -3,7 +3,7 @@
 namespace App\Blog\Articles\Repositories;
 
 use App\Shop\AttributeValues\AttributeValue;
-use App\Shop\Products\Exceptions\ProductCreateErrorException;
+use App\Blog\Articles\Exceptions\ArticleCreateErrorException;
 use App\Blog\Articles\Exceptions\ArticleUpdateErrorException;
 use App\Shop\Tools\UploadableTrait;
 use Jsdecena\Baserepo\BaseRepository;
@@ -13,7 +13,7 @@ use App\Blog\ArticleImages\ArticleImage;
 use App\Blog\Articles\Exceptions\ArticleNotFoundException;
 use App\Blog\Articles\Article;
 use App\Blog\Articles\Repositories\Interfaces\ArticleRepositoryInterface;
-use App\Shop\Products\Transformations\ArticleTransformable;
+use App\Blog\Articles\Transformations\ArticleTransformable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\UploadedFile;
@@ -25,55 +25,55 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
     use ArticleTransformable, UploadableTrait;
 
     /**
-     * ProductRepository constructor.
+     * ArticleRepository constructor.
      *
-     * @param Article $product
+     * @param Article $article
      */
-    public function __construct(Article $product)
+    public function __construct(Article $article)
     {
-        parent::__construct($product);
-        $this->model = $product;
+        parent::__construct($article);
+        $this->model = $article;
     }
 
     /**
-     * List all the products
+     * List all the article
      *
      * @param string $order
      * @param string $sort
      * @param array $columns
      * @return Collection
      */
-    public function listProducts(string $order = 'id', string $sort = 'desc', array $columns = ['*']) : Collection
+    public function listArticles(string $order = 'id', string $sort = 'desc', array $columns = ['*']) : Collection
     {
         return $this->all($columns, $order, $sort);
     }
 
     /**
-     * Create the product
+     * Create the article
      *
      * @param array $data
      *
      * @return Article
-     * @throws ProductCreateErrorException
+     * @throws ArticleCreateErrorException
      */
-    public function createProduct(array $data): Article
+    public function createArticle(array $data): Article
     {
         try {
             return $this->create($data);
         } catch (QueryException $e) {
-            throw new ProductCreateErrorException($e);
+            throw new ArticleCreateErrorException($e);
         }
     }
 
     /**
-     * Update the product
+     * Update the article
      *
      * @param array $data
      *
      * @return bool
      * @throws ArticleUpdateErrorException
      */
-    public function updateProduct(array $data) : bool
+    public function updateArticle(array $data) : bool
     {
         $filtered = collect($data)->except('image')->all();
 
@@ -85,73 +85,73 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
     }
 
     /**
-     * Find the product by ID
+     * Find the article by ID
      *
      * @param int $id
      *
      * @return Article
      * @throws ArticleNotFoundException
      */
-    public function findProductById(int $id): Article
+    public function findArticleById(int $id): Article
     {
         try {
-            return $this->transformProduct($this->findOneOrFail($id));
+            return $this->transformArticle($this->findOneOrFail($id));
         } catch (ModelNotFoundException $e) {
             throw new ArticleNotFoundException($e);
         }
     }
 
     /**
-     * Delete the product
+     * Delete the article
      *
-     * @param Article $product
+     * @param Article $article
      *
      * @return bool
      * @throws \Exception
      * @deprecated
-     * @use removeProduct
+     * @use removeArticle
      */
-    public function deleteProduct(Article $product) : bool
+    public function deleteArticle(Article $article) : bool
     {
-        $product->images()->delete();
-        return $product->delete();
+        $article->images()->delete();
+        return $article->delete();
     }
 
     /**
      * @return bool
      * @throws \Exception
      */
-    public function removeProduct() : bool
+    public function removeArticle() : bool
     {
         return $this->model->where('id', $this->model->id)->delete();
     }
 
     /**
-     * Detach the categories
+     * Detach the sections
      */
-    public function detachCategories()
+    public function detachSections()
     {
-        $this->model->categories()->detach();
+        $this->model->sections()->detach();
     }
 
     /**
-     * Return the categories which the product is associated with
+     * Return the sections which the article is associated with
      *
      * @return Collection
      */
-    public function getCategories() : Collection
+    public function getSections() : Collection
     {
-        return $this->model->categories()->get();
+        return $this->model->sections()->get();
     }
 
     /**
-     * Sync the categories
+     * Sync the sections
      *
      * @param array $params
      */
-    public function syncCategories(array $params)
+    public function syncSections(array $params)
     {
-        $this->model->categories()->sync($params);
+        $this->model->sections()->sync($params);
     }
 
     /**
@@ -161,7 +161,7 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
      */
     public function deleteFile(array $file, $disk = null) : bool
     {
-        return $this->update(['cover' => null], $file['product']);
+        return $this->update(['cover' => null], $file['article']);
     }
 
     /**
@@ -170,18 +170,18 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
      */
     public function deleteThumb(string $src) : bool
     {
-        return DB::table('product_images')->where('src', $src)->delete();
+        return DB::table('article_images')->where('src', $src)->delete();
     }
 
     /**
-     * Get the product via slug
+     * Get the article via slug
      *
      * @param array $slug
      *
      * @return Article
      * @throws ArticleNotFoundException
      */
-    public function findProductBySlug(array $slug): Article
+    public function findArticleBySlug(array $slug): Article
     {
         try {
             return $this->findOneByOrFail($slug);
@@ -194,19 +194,19 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
      * @param string $text
      * @return mixed
      */
-    public function searchProduct(string $text) : Collection
+    public function searchArticle(string $text) : Collection
     {
         if (!empty($text)) {
-            return $this->model->searchProduct($text);
+            return $this->model->searchArticle($text);
         } else {
-            return $this->listProducts();
+            return $this->listArticles();
         }
     }
 
     /**
      * @return mixed
      */
-    public function findProductImages() : Collection
+    public function findArticleImages() : Collection
     {
         return $this->model->images()->get();
     }
@@ -217,7 +217,7 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
      */
     public function saveCoverImage(UploadedFile $file) : string
     {
-        return $file->store('products', ['disk' => 'public']);
+        return $file->store('article', ['disk' => 'public']);
     }
 
     /**
@@ -225,64 +225,64 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
      *
      * @return void
      */
-    public function saveProductImages(Collection $collection)
+    public function saveArticleImages(Collection $collection)
     {
         $collection->each(function (UploadedFile $file) {
             $filename = $this->storeFile($file);
-            $productImage = new ArticleImage([
-                'product_id' => $this->model->id,
+            $articleImage = new ArticleImage([
+                'article_id' => $this->model->id,
                 'src' => $filename
             ]);
-            $this->model->images()->save($productImage);
+            $this->model->images()->save($articleImage);
         });
     }
 
     /**
-     * Associate the product attribute to the product
+     * Associate the article attribute to the article
      *
-     * @param ArticleAttribute $productAttribute
+     * @param ArticleAttribute $articleAttribute
      *
      * @return ArticleAttribute
      */
-    public function saveProductAttributes(ArticleAttribute $productAttribute): ArticleAttribute
+    public function saveArticleAttributes(ArticleAttribute $articleAttribute): ArticleAttribute
     {
-        $this->model->attributes()->save($productAttribute);
-        return $productAttribute;
+        $this->model->attributes()->save($articleAttribute);
+        return $articleAttribute;
     }
 
     /**
-     * List all the product attributes associated with the product
+     * List all the article attributes associated with the article
      *
      * @return Collection
      */
-    public function listProductAttributes() : Collection
+    public function listArticleAttributes() : Collection
     {
         return $this->model->attributes()->get();
     }
 
     /**
-     * Delete the attribute from the product
+     * Delete the attribute from the article
      *
-     * @param ArticleAttribute $productAttribute
+     * @param ArticleAttribute $articleAttribute
      *
      * @return bool|null
      * @throws \Exception
      */
-    public function removeProductAttribute(ArticleAttribute $productAttribute) : ?bool
+    public function removeArticleAttribute(ArticleAttribute $articleAttribute) : ?bool
     {
-        return $productAttribute->delete();
+        return $articleAttribute->delete();
     }
 
     /**
-     * @param ArticleAttribute $productAttribute
+     * @param ArticleAttribute $articleAttribute
      * @param AttributeValue   ...$attributeValues
      *
      * @return Collection
      */
-    public function saveCombination(ArticleAttribute $productAttribute, AttributeValue ...$attributeValues) : Collection
+    public function saveCombination(ArticleAttribute $articleAttribute, AttributeValue ...$attributeValues) : Collection
     {
-        return collect($attributeValues)->each(function (AttributeValue $value) use ($productAttribute) {
-            return $productAttribute->attributesValues()->save($value);
+        return collect($attributeValues)->each(function (AttributeValue $value) use ($articleAttribute) {
+            return $articleAttribute->attributesValues()->save($value);
         });
     }
 
@@ -291,19 +291,19 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
      */
     public function listCombinations() : Collection
     {
-        return $this->model->attributes()->map(function (ArticleAttribute $productAttribute) {
-            return $productAttribute->attributesValues;
+        return $this->model->attributes()->map(function (ArticleAttribute $articleAttribute) {
+            return $articleAttribute->attributesValues;
         });
     }
 
     /**
-     * @param ArticleAttribute $productAttribute
+     * @param ArticleAttribute $articleAttribute
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function findProductCombination(ArticleAttribute $productAttribute)
+    public function findArticleCombination(ArticleAttribute $articleAttribute)
     {
-        $values = $productAttribute->attributesValues()->get();
+        $values = $articleAttribute->attributesValues()->get();
 
         return $values->map(function (AttributeValue $attributeValue) {
             return $attributeValue;

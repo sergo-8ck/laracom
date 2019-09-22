@@ -2,11 +2,11 @@
 
 namespace App\Blog\Sections\Repositories;
 
-use App\Blog\Section\Repositories\Interfaces\SectionRepositoryInterface;
+use App\Blog\Sections\Repositories\Interfaces\SectionRepositoryInterface;
 use Jsdecena\Baserepo\BaseRepository;
 use App\Blog\Sections\Section;
 use App\Blog\Sections\Exceptions\SectionInvalidArgumentException;
-use App\Blog\Sections\Exceptions\CategoryNotFoundException;
+use App\Blog\Sections\Exceptions\SectionNotFoundException;
 use App\Blog\Articles\Article;
 use App\Blog\Articles\Transformations\ArticleTransformable;
 use App\Shop\Tools\UploadableTrait;
@@ -20,38 +20,38 @@ class SectionRepository extends BaseRepository implements SectionRepositoryInter
     use UploadableTrait, ArticleTransformable;
 
     /**
-     * CategoryRepository constructor.
+     * SectionRepository constructor.
      *
-     * @param Section $category
+     * @param Section $section
      */
-    public function __construct(Section $category)
+    public function __construct(Section $section)
     {
-        parent::__construct($category);
-        $this->model = $category;
+        parent::__construct($section);
+        $this->model = $section;
     }
 
     /**
-     * List all the categories
+     * List all the sections
      *
      * @param string $order
      * @param string $sort
      * @param array $except
      * @return \Illuminate\Support\Collection
      */
-    public function listCategories(string $order = 'id', string $sort = 'desc', $except = []) : Collection
+    public function listSections(string $order = 'id', string $sort = 'desc', $except = []) : Collection
     {
         return $this->model->orderBy($order, $sort)->get()->except($except);
     }
 
     /**
-     * List all root categories
+     * List all root sections
      * 
      * @param  string $order 
      * @param  string $sort  
      * @param  array  $except
      * @return \Illuminate\Support\Collection  
      */
-    public function rootCategories(string $order = 'id', string $sort = 'desc', $except = []) : Collection
+    public function rootSections(string $order = 'id', string $sort = 'desc', $except = []) : Collection
     {
         return $this->model->whereIsRoot()
                         ->orderBy($order, $sort)
@@ -60,15 +60,15 @@ class SectionRepository extends BaseRepository implements SectionRepositoryInter
     }
 
     /**
-     * Create the category
+     * Create the section
      *
      * @param array $params
      *
      * @return Section
      * @throws SectionInvalidArgumentException
-     * @throws CategoryNotFoundException
+     * @throws SectionNotFoundException
      */
-    public function createCategory(array $params): Section
+    public function createSection(array $params): Section
     {
         try {
 
@@ -78,117 +78,126 @@ class SectionRepository extends BaseRepository implements SectionRepositoryInter
             }
 
             if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
-                $cover = $this->uploadOne($params['cover'], 'categories');
+                $cover = $this->uploadOne($params['cover'], 'sections');
             }
 
-            $merge = $collection->merge(compact('slug', 'cover'));
+            if (isset($params['background']) && ($params['background'] instanceof UploadedFile)) {
+                $background = $this->uploadOne($params['background'], 'sections');
+            }
 
-            $category = new Section($merge->all());
+            $merge = $collection->merge(compact('slug', 'cover', 'background'));
+
+            $section = new Section($merge->all());
 
             if (isset($params['parent'])) {
-                $parent = $this->findCategoryById($params['parent']);
-                $category->parent()->associate($parent);
+                $parent = $this->findSectionById($params['parent']);
+                $section->parent()->associate($parent);
             }
 
-            $category->save();
-            return $category;
+            $section->save();
+            return $section;
         } catch (QueryException $e) {
             throw new SectionInvalidArgumentException($e->getMessage());
         }
     }
 
     /**
-     * Update the category
+     * Update the section
      *
      * @param array $params
      *
      * @return Section
-     * @throws CategoryNotFoundException
+     * @throws SectionNotFoundException
      */
-    public function updateCategory(array $params): Section
+    public function updateSection(array $params): Section
     {
-        $category = $this->findCategoryById($this->model->id);
+        $section = $this->findSectionById($this->model->id);
         $collection = collect($params)->except('_token');
         $slug = str_slug($collection->get('name'));
 
         if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
-            $cover = $this->uploadOne($params['cover'], 'categories');
+            $cover = $this->uploadOne($params['cover'], 'sections');
         }
 
-        $merge = $collection->merge(compact('slug', 'cover'));
+        if (isset($params['background']) && ($params['background'] instanceof UploadedFile)) {
+            $background = $this->uploadOne($params['background'], 'sections');
+        }
+
+        $merge = $collection->merge(compact('slug', 'cover', 'background'));
+
         if (isset($params['parent'])) {
-            $parent = $this->findCategoryById($params['parent']);
-            $category->parent()->associate($parent);
+            $parent = $this->findSectionById($params['parent']);
+            $section->parent()->associate($parent);
         }
 
-        $category->update($merge->all());
-        return $category;
+        $section->update($merge->all());
+        return $section;
     }
 
     /**
      * @param int $id
      *
      * @return Section
-     * @throws CategoryNotFoundException
+     * @throws SectionNotFoundException
      */
-    public function findCategoryById(int $id) : Section
+    public function findSectionById(int $id) : Section
     {
         try {
             return $this->findOneOrFail($id);
         } catch (ModelNotFoundException $e) {
-            throw new CategoryNotFoundException($e->getMessage());
+            throw new SectionNotFoundException($e->getMessage());
         }
     }
 
     /**
-     * Delete a category
+     * Delete a section
      *
      * @return bool
      * @throws \Exception
      */
-    public function deleteCategory() : bool
+    public function deleteSection() : bool
     {
         return $this->model->delete();
     }
 
     /**
-     * Associate a product in a category
+     * Associate a article in a section
      *
-     * @param Article $product
+     * @param Article $article
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function associateProduct(Article $product)
+    public function associateArticle(Article $article)
     {
-        return $this->model->products()->save($product);
+        return $this->model->articles()->save($article);
     }
 
     /**
-     * Return all the products associated with the category
+     * Return all the articles associated with the section
      *
      * @return mixed
      */
-    public function findProducts() : Collection
+    public function findArticles() : Collection
     {
-        return $this->model->products;
+        return $this->model->articles;
     }
 
     /**
      * @param array $params
      */
-    public function syncProducts(array $params)
+    public function syncArticles(array $params)
     {
-        $this->model->products()->sync($params);
+        $this->model->articles()->sync($params);
     }
 
 
     /**
-     * Detach the association of the product
+     * Detach the association of the article
      *
      */
-    public function detachProducts()
+    public function detachArticles()
     {
-        $this->model->products()->detach();
+        $this->model->articles()->detach();
     }
 
     /**
@@ -198,30 +207,30 @@ class SectionRepository extends BaseRepository implements SectionRepositoryInter
      */
     public function deleteFile(array $file, $disk = null) : bool
     {
-        return $this->update(['cover' => null], $file['category']);
+        return $this->update([$file['field'] => null], $file['section']);
     }
 
     /**
-     * Return the category by using the slug as the parameter
+     * Return the section by using the slug as the parameter
      *
      * @param array $slug
      *
      * @return Section
-     * @throws CategoryNotFoundException
+     * @throws SectionNotFoundException
      */
-    public function findCategoryBySlug(array $slug) : Section
+    public function findSectionBySlug(array $slug) : Section
     {
         try {
             return $this->findOneByOrFail($slug);
         } catch (ModelNotFoundException $e) {
-            throw new CategoryNotFoundException($e);
+            throw new SectionNotFoundException($e);
         }
     }
 
     /**
      * @return mixed
      */
-    public function findParentCategory()
+    public function findParentSection()
     {
         return $this->model->parent;
     }

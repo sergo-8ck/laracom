@@ -15,10 +15,7 @@ class UpdateArticleRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'sku' => ['required'],
-            'name' => ['required', Rule::unique('products')->ignore($this->segment(3))],
-            'quantity' => ['required', 'integer'],
-            'price' => ['required']
+            'name' => ['required', Rule::unique('articles')->ignore($this->segment(3))]
         ];
     }
 }

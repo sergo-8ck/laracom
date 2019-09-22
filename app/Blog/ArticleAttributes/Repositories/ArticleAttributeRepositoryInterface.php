@@ -6,5 +6,5 @@ use Jsdecena\Baserepo\BaseRepositoryInterface;
 
 interface ArticleAttributeRepositoryInterface extends BaseRepositoryInterface
 {
-    public function findProductAttributeById(int $id);
+    public function findArticleAttributeById(int $id);
 }

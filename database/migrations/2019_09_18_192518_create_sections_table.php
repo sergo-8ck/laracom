@@ -18,12 +18,14 @@ class CreateSectionsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('slug');
-            $table->string('title');
-            $table->string('title_h1');
+            $table->string('title')->nullable();
+            $table->string('title_h1')->nullable();
             $table->text('description')->nullable();
+            $table->text('content')->nullable();
             $table->text('seo_keywords')->nullable();
             $table->text('seo_description')->nullable();
             $table->string('cover')->nullable();
+            $table->string('background')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
             NestedSet::columns($table);

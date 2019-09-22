@@ -14,11 +14,10 @@ class CreateArticleRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'sku' => ['required'],
-            'name' => ['required', 'unique:products'],
-            'quantity' => ['required', 'numeric'],
-            'price' => ['required'],
-            'cover' => ['required', 'file', 'image:png,jpeg,jpg,gif']
+            'name'     => ['required', 'unique:articles'],
+            'title'    => ['required'],
+            'cover'    => ['required', 'file', 'image:png,jpeg,jpg,gif'],
+            'background' => ['file', 'image:png,jpeg,jpg,gif']
         ];
     }
 }

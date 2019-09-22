@@ -8,28 +8,28 @@ use Illuminate\Support\Facades\Storage;
 trait ArticleTransformable
 {
     /**
-     * Transform the product
+     * Transform the article
      *
-     * @param Article $product
+     * @param Article $article
      *
      * @return Article
      */
-    protected function transformProduct(Article $product)
+    protected function transformArticle(Article $article)
     {
-        $prod              = new Article;
-        $prod->id          = (int) $product->id;
-        $prod->name        = $product->name;
-        $prod->sku         = $product->sku;
-        $prod->slug        = $product->slug;
-        $prod->description = $product->description;
-        $prod->cover       = asset("storage/$product->cover");
-        $prod->quantity    = $product->quantity;
-        $prod->price       = $product->price;
-        $prod->status      = $product->status;
-        $prod->weight      = (float) $product->weight;
-        $prod->mass_unit   = $product->mass_unit;
-        $prod->sale_price = $product->sale_price;
-        $prod->brand_id = (int) $product->brand_id;
+        $prod                  = new Article;
+        $prod->id              = (int)$article->id;
+        $prod->name            = $article->name;
+        $prod->title           = $article->title;
+        $prod->title_h1        = $article->title_h1;
+        $prod->slug            = $article->slug;
+        $prod->description     = $article->description;
+        $prod->content         = $article->content;
+        $prod->cover           = asset("storage/$article->cover");
+        $prod->background      = asset("storage/$article->background");
+        $prod->seo_keywords    = $article->seo_keywords;
+        $prod->seo_description = $article->seo_description;
+        $prod->status          = $article->status;
+        $prod->mass_unit       = $article->mass_unit;
 
         return $prod;
     }

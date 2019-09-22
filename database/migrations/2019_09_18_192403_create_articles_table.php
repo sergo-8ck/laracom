@@ -15,16 +15,16 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sku');
             $table->string('name');
             $table->string('title');
             $table->string('title_h1');
             $table->string('slug');
-            $table->text('short_description')->nullable();
             $table->text('description')->nullable();
+            $table->text('content')->nullable();
             $table->text('seo_keywords')->nullable();
             $table->text('seo_description')->nullable();
             $table->string('cover')->nullable();
+            $table->string('background')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });

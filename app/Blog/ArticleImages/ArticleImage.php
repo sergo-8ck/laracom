@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArticleImage extends Model
 {
     protected $fillable = [
-        'product_id',
+        'article_id',
         'src'
     ];
 
@@ -17,7 +17,7 @@ class ArticleImage extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function product()
+    public function article()
     {
         return $this->belongsTo(Article::class);
     }

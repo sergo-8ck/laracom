@@ -9,27 +9,27 @@ use Illuminate\Support\Collection;
 
 interface SectionRepositoryInterface extends BaseRepositoryInterface
 {
-    public function listCategories(string $order = 'id', string $sort = 'desc', $except = []) : Collection;
+    public function listSections(string $order = 'id', string $sort = 'desc', $except = []) : Collection;
 
-    public function createCategory(array $params) : Section;
+    public function createSection(array $params) : Section;
 
-    public function updateCategory(array $params) : Section;
+    public function updateSection(array $params) : Section;
 
-    public function findCategoryById(int $id) : Section;
+    public function findSectionById(int $id) : Section;
 
-    public function deleteCategory() : bool;
+    public function deleteSection() : bool;
 
-    public function associateProduct(Article $product);
+    public function associateArticle(Article $article);
 
-    public function findProducts() : Collection;
+    public function findArticles() : Collection;
 
-    public function syncProducts(array $params);
+    public function syncArticles(array $params);
 
-    public function detachProducts();
+    public function detachArticles();
 
     public function deleteFile(array $file, $disk = null) : bool;
 
-    public function findCategoryBySlug(array $slug) : Section;
+    public function findSectionBySlug(array $slug) : Section;
 
-    public function rootCategories(string $string, string $string1);
+    public function rootSections(string $string, string $string1);
 }

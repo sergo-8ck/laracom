@@ -12,49 +12,49 @@ use Illuminate\Support\Collection;
 
 interface ArticleRepositoryInterface extends BaseRepositoryInterface
 {
-    public function listProducts(string $order = 'id', string $sort = 'desc', array $columns = ['*']) : Collection;
+    public function listArticles(string $order = 'id', string $sort = 'desc', array $columns = ['*']) : Collection;
 
-    public function createProduct(array $data) : Article;
+    public function createArticle(array $data) : Article;
 
-    public function updateProduct(array $data) : bool;
+    public function updateArticle(array $data) : bool;
 
-    public function findProductById(int $id) : Article;
+    public function findArticleById(int $id) : Article;
 
-    public function deleteProduct(Article $product) : bool;
+    public function deleteArticle(Article $article) : bool;
 
-    public function removeProduct() : bool;
+    public function removeArticle() : bool;
 
-    public function detachCategories();
+    public function detachSections();
 
-    public function getCategories() : Collection;
+    public function getSections() : Collection;
 
-    public function syncCategories(array $params);
+    public function syncSections(array $params);
 
     public function deleteFile(array $file, $disk = null) : bool;
 
     public function deleteThumb(string $src) : bool;
 
-    public function findProductBySlug(array $slug) : Article;
+    public function findArticleBySlug(array $slug) : Article;
 
-    public function searchProduct(string $text) : Collection;
+    public function searchArticle(string $text) : Collection;
 
-    public function findProductImages() : Collection;
+    public function findArticleImages() : Collection;
 
     public function saveCoverImage(UploadedFile $file) : string;
 
-    public function saveProductImages(Collection $collection);
+    public function saveArticleImages(Collection $collection);
 
-    public function saveProductAttributes(ArticleAttribute $productAttribute) : ArticleAttribute;
+    public function saveArticleAttributes(ArticleAttribute $articleAttribute) : ArticleAttribute;
 
-    public function listProductAttributes() : Collection;
+    public function listArticleAttributes() : Collection;
 
-    public function removeProductAttribute(ArticleAttribute $productAttribute) : ?bool;
+    public function removeArticleAttribute(ArticleAttribute $articleAttribute) : ?bool;
 
-    public function saveCombination(ArticleAttribute $productAttribute, AttributeValue ...$attributeValues) : Collection;
+    public function saveCombination(ArticleAttribute $articleAttribute, AttributeValue ...$attributeValues) : Collection;
 
     public function listCombinations() : Collection;
 
-    public function findProductCombination(ArticleAttribute $attribute);
+    public function findArticleCombination(ArticleAttribute $attribute);
 
     public function saveBrand(Brand $brand);
 

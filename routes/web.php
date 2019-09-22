@@ -31,6 +31,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['employee'], 'as' => 'admin.
                 Route::get('remove-image-product', 'ProductController@removeImage')->name('product.remove.image');
                 Route::get('remove-image-thumb', 'ProductController@removeThumbnail')->name('product.remove.thumb');
             });
+            Route::namespace('Articles')->group(function () {
+                Route::resource('articles', 'ArticleController');
+                Route::get('remove-image-article', 'ArticleController@removeImage')->name('article.remove.image');
+                Route::get('remove-image-thumb', 'ArticleController@removeThumbnail')->name('article.remove.thumb');
+            });
             Route::namespace('Customers')->group(function () {
                 Route::resource('customers', 'CustomerController');
                 Route::resource('customers.addresses', 'CustomerAddressController');
@@ -38,6 +43,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['employee'], 'as' => 'admin.
             Route::namespace('Categories')->group(function () {
                 Route::resource('categories', 'CategoryController');
                 Route::get('remove-image-category', 'CategoryController@removeImage')->name('category.remove.image');
+            });
+            Route::namespace('Sections')->group(function () {
+                Route::resource('sections', 'SectionController');
+                Route::get('remove-image-section', 'SectionController@removeImage')->name('section.remove.image');
             });
             Route::namespace('Orders')->group(function () {
                 Route::resource('orders', 'OrderController');
