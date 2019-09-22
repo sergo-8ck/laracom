@@ -32,7 +32,7 @@
                             @endforeach
                         </select>
                     </div>
-                    @include('admin.shared.status-select', ['status' => 0])
+                    @include('admin.shared.status-select', ['status' => 1])
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">

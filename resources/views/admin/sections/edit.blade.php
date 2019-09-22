@@ -18,7 +18,7 @@
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content" id="tabcontent">
-                                <div role="tabpanel" class="tab-pane @if(!request()->has('combination')) active @endif" id="info">
+                                <div role="tabpanel" class="tab-pane active" id="info">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -86,7 +86,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane @if(!request()->has('combination')) active @endif" id="combinations">
+                                <div role="tabpanel" class="tab-pane id="combinations">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">

@@ -18,7 +18,7 @@
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content" id="tabcontent">
-                                <div role="tabpanel" class="tab-pane @if(!request()->has('combination')) active @endif" id="info">
+                                <div role="tabpanel" class="tab-pane  active" id="info">
                                     <div class="row">
                                         <div class="col-md-8">
                                             <h2>{{ ucfirst($article->name) }}</h2>
@@ -101,9 +101,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane @if(!request()->has('combination')) @endif" id="combinations">
+                                <div role="tabpanel" class="tab-pane" id="combinations">
                                     <div class="row">
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <h2>{{ ucfirst($article->name) }}</h2>
                                             <div class="form-group">
                                                 <label for="title">Title </label>
@@ -118,10 +118,6 @@
                                                 <textarea class="form-control" name="seo_description" id="seo_description" rows="5" placeholder="СЕО Описание">{!! $article->seo_description  !!}</textarea>
                                             </div>
                                             <!-- /.box-body -->
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h2>Разделы</h2>
-                                            @include('admin.shared.sections', ['sections' => $sections, 'ids' => $article])
                                         </div>
                                     </div>
                                     <div class="row">

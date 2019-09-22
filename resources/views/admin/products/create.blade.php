@@ -53,7 +53,7 @@
                             </select>
                         </div>
                         @endif
-                        @include('admin.shared.status-select', ['status' => 0])
+                        @include('admin.shared.status-select', ['status' => 1])
                         @include('admin.shared.attribute-select', [compact('default_weight')])
                     </div>
                     <div class="col-md-4">

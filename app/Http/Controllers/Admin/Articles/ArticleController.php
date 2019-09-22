@@ -137,6 +137,7 @@ class ArticleController extends Controller
     {
         $data = $request->except('_token', '_method');
         $data['slug'] = str_slug($request->input('name'));
+        $data['title'] = $data['title'] ?? $request->input('title_h1');
 
         if ($request->hasFile('cover') && $request->file('cover') instanceof UploadedFile) {
             $data['cover'] = $this->articleRepo->saveCoverImage($request->file('cover'));
