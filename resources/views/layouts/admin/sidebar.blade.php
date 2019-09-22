@@ -18,6 +18,31 @@
         <ul class="sidebar-menu">
             <li class="header">HOME</li>
             <li><a href="{{ route('admin.dashboard') }}"> <i class="fa fa-home"></i> Home</a></li>
+            <li class="header">CONTENT</li>
+            <li class="treeview @if(request()->segment(2) == 'articles' || request()->segment(2) == 'sections') active @endif">
+                <a href="#">
+                    <i class="fa fa-gift"></i> <span>Статьи</span>
+                    <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    @if($user->hasPermission('view-article'))<li><a href="{{ route('admin.articles.index') }}"><i class="fa fa-circle-o"></i> Все статьи</a></li>@endif
+                    @if($user->hasPermission('create-article'))<li><a href="{{ route('admin.articles.create') }}"><i class="fa fa-plus"></i> Создать статьи</a></li>@endif
+                    <li class="@if(request()->segment(2) == 'sections') active @endif">
+                        <a href="#">
+                            <i class="fa fa-gear"></i> <span>Разделы</span>
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('admin.sections.index') }}"><i class="fa fa-circle-o"></i> Все разделы</a></li>
+                            <li><a href="{{ route('admin.sections.create') }}"><i class="fa fa-plus"></i> Создать раздел</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
             <li class="header">SELL</li>
             <li class="treeview @if(request()->segment(2) == 'products' || request()->segment(2) == 'attributes' || request()->segment(2) == 'brands') active @endif">
                 <a href="#">
