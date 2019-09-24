@@ -1,0 +1,20 @@
+.content-nav{
+	display: none;
+}
+.home-slider-thumbs{
+	display: none;
+}
+
+#frontendManager{
+	display: none;
+}
+.find_map{
+	display: none;
+}
+
+.design_2 .container .row div:nth-child(1){
+	display: none;
+}
+
+
+

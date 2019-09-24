@@ -84,7 +84,7 @@ Route::namespace('Auth')->group(function () {
 });
 
 Route::namespace('Front')->group(function () {
-    Route::get('/', 'HomeController@index')->name('home');
+//    Route::get('/', 'HomeController@index')->name('home');
     Route::group(['middleware' => ['auth', 'web']], function () {
 
         Route::namespace('Payments')->group(function () {
@@ -110,4 +110,8 @@ Route::namespace('Front')->group(function () {
     Route::get("category/{slug}", 'CategoryController@getCategory')->name('front.section.slug');
     Route::get("search", 'ArticleController@search')->name('search.article');
     Route::get("{article}", 'ArticleController@show')->name('front.get.article');
+});
+
+Route::namespace('Frontend')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
 });

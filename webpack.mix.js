@@ -86,3 +86,50 @@ mix.browserSync({
     'resources/docs/**/*.md'
   ]
 });
+
+mix.
+  styles([
+      'resources/assets/frontend/css/bootstrap.min.css',
+      'resources/assets/frontend/css/font-awesome.min.css',
+      'resources/assets/frontend/css/flexslider.css',
+      'resources/assets/frontend/css/jquery.bxslider.css',
+      'resources/assets/frontend/css/jquery.fancybox.css',
+      'resources/assets/frontend/css/jquery.selectbox.css',
+      'resources/assets/frontend/css/style.css',
+      'resources/assets/frontend/css/mobile.css',
+      'resources/assets/frontend/css/settings.css',
+      'resources/assets/frontend/css/animate.min.css',
+      'resources/assets/frontend/css/ts.css',
+    ], 'public/css/index.css')
+
+  .scripts([
+      'resources/assets/frontend/js/html5shiv.js',
+      'resources/assets/frontend/js/respond.min.js',
+    ], 'public/js/html5shivrespond.js')
+
+  .scripts([
+      'resources/assets/frontend/js/html5shiv.js',
+      'resources/assets/frontend/js/respond.min.js',
+      'resources/assets/frontend/js/jquery.min.js',
+      'resources/assets/frontend/js/bootstrap.min.js',
+      'resources/assets/frontend/js/jquery.themepunch.tools.min.js',
+      'resources/assets/frontend/js/jquery.themepunch.revolution.min.js'
+    ], 'public/js/index_t.js')
+
+  .scripts([
+      'resources/assets/frontend/js/retina.js',
+      'resources/assets/frontend/js/jquery.parallax.js',
+      'resources/assets/frontend/js/jquery.inview.min.js',
+      'resources/assets/frontend/js/main.js',
+      'resources/assets/frontend/js/jquery.fancybox.js',
+      'resources/assets/frontend/js/modernizr.custom.js',
+      'resources/assets/frontend/js/jquery.flexslider.js',
+      'resources/assets/frontend/js/jquery.bxslider.js',
+      'resources/assets/frontend/js/jquery.selectbox-0.2.js',
+      'resources/assets/frontend/js/jquery.mousewheel.js',
+      'resources/assets/frontend/js/jquery.easing.js'
+    ], 'public/js/index_b.js')
+
+    .copy('resources/assets/frontend/fonts', 'public/fonts')
+    .copy('resources/assets/frontend/assets', 'public/assets')
+    .copy('resources/assets/frontend/images', 'public/images');

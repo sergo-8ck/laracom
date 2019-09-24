@@ -85,3 +85,15 @@ if (!function_exists('validate_breadcumb')) {
         return ["errors" => $errors, "valid" => $validated];
     }
 }
+
+if (!function_exists("phone_format")) {
+    /**
+     * phone +71234567891 => +7(123) 456-78-91
+     */
+    function phone_format($number)
+    {
+        // Allow only Digits, remove all other characters.
+        return preg_replace('~(.*)(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '$1 ($2) $3-$4', $number). "\n";
+    }
+
+}

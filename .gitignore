@@ -27,4 +27,7 @@ storage/app/public/storage
 \.php_cs\.cache
 public/css
 public/js
+public/assets
 .idea
+resources/assets/images
+resources/assets/frontend/images
