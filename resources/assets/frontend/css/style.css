@@ -749,9 +749,6 @@ header .navbar-nav li.dropdown .dropdown-menu li.dropdown.other_side .dropdown-m
 	right: 100%;
 	transition-duration: 0s !important;
 }
-.navbar-header{
-	float: none;
-}
 .navbar-collapse.in, .navbar-collapse.collapse, .navbar-collapse.collapsing {
 	border: none;
 	box-shadow: none;
@@ -948,70 +945,6 @@ header.affix .bottom-header .navbar-default .navbar-brand .logo .secondary_text 
 
 .dynamic-image-1, .dynamic-image-2, .dynamic-image-3, .dynamic-image-4, .dynamic-image-7, .dynamic-image-8, .dynamic-image-9, .dynamic-image-10, .dynamic-image-11, .dynamic-image-12, .dynamic-image-13, .dynamic-image-14, .dynamic-image-15, .dynamic-image-16 {
 	background-size: cover;
-}
-
-.dynamic-image-1 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-1.jpg) top center no-repeat;
-}
-
-.dynamic-image-2 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-2.jpg) top center no-repeat;
-}
-
-.dynamic-image-3 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-3.jpg) top center no-repeat;
-}
-
-.dynamic-image-4 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-4.jpg) top center no-repeat;
-}
-
-.dynamic-image-5 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-5.jpg) top center no-repeat;
-}
-
-.dynamic-image-6 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-6.jpg) top center no-repeat;
-}
-
-.dynamic-image-7 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-7.jpg) top center no-repeat;
-}
-
-.dynamic-image-8 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-8.jpg) top center no-repeat;
-}
-
-.dynamic-image-9 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-9.jpg) top center no-repeat;
-}
-
-.dynamic-image-10 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-10.jpg) top center no-repeat;
-}
-
-.dynamic-image-11 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-11.jpg) top center no-repeat;
-}
-
-.dynamic-image-12 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-12.jpg) top center no-repeat;
-}
-
-.dynamic-image-13 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-13.jpg) top center no-repeat;
-}
-
-.dynamic-image-14 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-14.jpg) top center no-repeat;
-}
-
-.dynamic-image-15 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-15.jpg) top center no-repeat;
-}
-
-.dynamic-image-16 {
-	background: url(http://demo.themesuite.com/automotive/images/dynamic-header-16.jpg) top center no-repeat;
 }
 
 #secondary-banner h2 {
@@ -7934,7 +7867,7 @@ a.inventory .iaai-color img{
 .rec-total-count:after { border-color: rgba(153, 153, 153, 0); border-right-color: #999; border-width: 17px; margin-top: -17px; }
 .rec-total-count:before { border-color: rgba(0, 0, 0, 0); border-right-color: #; border-width: 20px; margin-top: -20px; }
 .rec-name{text-transform:capitalize}
-.breadcrumb{border:1px solid #c7c8ca; border-radius:8px; padding:5px 10px; position:relative; margin-left:5px; font-weight:600; color:#fff; background-color:#3d8300;}
+.breadcrumb{border:1px solid #c7c8ca; border-radius:8px; padding:5px 10px; position:relative; margin-left:5px; font-weight:600; color:#fff; background-color:#c7081b;}
 .breadcrumb:first-child{margin-left:10px}
 .close{ margin-left:10px; cursor:pointer}
 .flexYearbox {

@@ -36,7 +36,6 @@
 
 <body>
 @include('frontend.layouts.header')
-<div class="clearfix"></div>
 @include('frontend.layouts.slider')
 <section class="message-wrap">
     <div class="container">
@@ -131,7 +130,7 @@
 @include('frontend.layouts.footer')
 <div class="back_to_top"><img src="{{asset('images/arrow-up.png')}}" alt="scroll up"/></div>
 
-<script type="text/javascript" src="js/index_b.js"></script>
+<script type="text/javascript" src="{{ asset('js/index_b.js') }}"></script>
 
 </body>
 </html>

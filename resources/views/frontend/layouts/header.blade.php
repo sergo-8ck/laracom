@@ -161,3 +161,4 @@
         <div class="header_shadow"></div>
     </div>
 </header>
+<div class="clearfix"></div>
