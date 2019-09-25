@@ -52,16 +52,16 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof NotFoundHttpException || $exception instanceof ArticleNotFoundException) {
-            return response()->view('frontend.layouts.errors.404', [], 404);
+            return response()->view('frontend.errors.404', [], 404);
         } elseif ($exception instanceof HttpException && $exception->getStatusCode() == 403) {
             return response()->view(
-                'frontend.layouts.errors.403',
+                'frontend.errors.403',
                 ['error' => 'Sorry, this page is restricted to authorized users only.'],
                 403
             );
         } elseif ($exception instanceof HttpException) {
             Log::info($exception->getMessage());
-            return response()->view('layouts.errors.503', ['error' => $exception->getTrace()], 500);
+            return response()->view('frontend.errors.503', ['error' => $exception->getTrace()], 500);
         }
 
         return parent::render($request, $exception);

@@ -485,10 +485,10 @@ textarea, select {
     border: 1px solid #d89522;
     background: #fff;
     border-radius: 3px !important;
-    color: #c4c4c4;
+    color: #000;
     outline: none;
     font-size: 15px;
-    text-align: center;
+    text-align: left;
     line-height: 1;
     vertical-align: middle;
     font-weight: 300;

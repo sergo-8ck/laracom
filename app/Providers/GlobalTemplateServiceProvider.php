@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Blog\Sections\Repositories\SectionRepository;
 use App\Shop\Carts\Repositories\CartRepository;
 use App\Shop\Carts\ShoppingCart;
 use App\Shop\Categories\Category;
+use App\Blog\Sections\Section;
 use App\Shop\Categories\Repositories\CategoryRepository;
 use App\Shop\Employees\Employee;
 use App\Shop\Employees\Repositories\EmployeeRepository;
@@ -27,6 +29,7 @@ class GlobalTemplateServiceProvider extends ServiceProvider
     {
         view()->composer([
             'layouts.admin.app',
+            'frontend.layouts.app',
             'layouts.admin.sidebar',
             'admin.shared.products',
             'admin.shared.articles'
@@ -34,8 +37,9 @@ class GlobalTemplateServiceProvider extends ServiceProvider
             $view->with('admin', Auth::guard('employee')->user());
         });
 
-        view()->composer(['layouts.front.app', 'front.categories.sidebar-category'], function ($view) {
+        view()->composer(['layouts.front.app', 'frontend.layouts.app', 'front.categories.sidebar-category'], function ($view) {
             $view->with('categories', $this->getCategories());
+            $view->with('sections', $this->getSections());
             $view->with('cartCount', $this->getCartCount());
         });
 
@@ -78,6 +82,16 @@ class GlobalTemplateServiceProvider extends ServiceProvider
     {
         $categoryRepo = new CategoryRepository(new Category);
         return $categoryRepo->listCategories('name', 'asc', 1)->whereIn('parent_id', [1]);
+    }
+
+    /**
+ * Get all the sections
+ *
+ */
+    private function getSections()
+    {
+        $sectionRepo = new SectionRepository(new Section);
+        return $sectionRepo->listSections('name', 'asc', 1)->whereIn('parent_id', [1]);
     }
 
     /**

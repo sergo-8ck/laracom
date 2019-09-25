@@ -19,7 +19,7 @@
                     <ul>
                         <li><i class="fa fa-map-marker"></i> <strong>Адрес:</strong>{{ config('shop.address') }}
                         </li>
-                        <li><i class="fa fa-phone"></i> <strong>Телефон:</strong>{{ config('shop.phone') }}</li>
+                        <li><i class="fa fa-phone"></i> <strong>Телефон:</strong><a href="tel:{{ config('shop.phone') }}">{{ phone_format(config('shop.phone')) }}</a></li>
                         <li><i class="fa fa-envelope-o"></i> <strong>Email:</strong><a
                                 href="mailto:[[++email]]">{{ config('shop.email') }}</a></li>
                     </ul>

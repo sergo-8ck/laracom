@@ -1,4 +1,4 @@
-@extends('frontend.layouts.blog')
+@extends('frontend.layouts.app')
 
 @section('title'){{$article->title}}@stop
 @section('title_h1'){{$article->title_h1}}@stop
@@ -7,15 +7,32 @@
 
 @section('seo_keywords')@if($article->seo_keywords){{$article->seo_keywords}},@endifпродажа авто Америки, автомобили из Америки, автомобили из Германии, автомобили из США,авто из Америки, авто из Германии, авто из Европы и СШАавто из США форум,авто из США, купить авто из США, машины из Америки, машины из США, мотоциклы из Америки, мотоциклы из Германии, мотоциклы из США, новые автомобили из Америки, новые авто из США, продажа автомобилей Америки, продажа автомобилей США, продажа авто США, сайт продажи авто в США, спец техника из Америки, спец техника из США@stop
 
+@section('secondary_banner')
+    @include('frontend.layouts.secondary')
+@endsection
+
 @section('content')
-    <div class="blog-content">
-        <div class="post-entry clearfix">
-            <div class="col-lg-12"> <img src="{{ asset("storage/$article->cover") }}" alt="" />
-                <div class="blog-title">
-                    <h1 class="margin-top-40">{{ $article->title_h1 }}</h1>
+    <section class="content">
+        <div class="container">
+            <div class="inner-page full-width-sidebar row">
+                <div class="col-lg-3 col-md-3 col-sm-3 xs-padding-left-none">
+                    @include('frontend.layouts.sidebar')
                 </div>
-                {!! $article->content !!}
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 xs-margin-bottom-50">
+                    <div class="blog-content">
+                        <div class="post-entry clearfix">
+                            <div class="col-lg-12"> @if($article->cover)<img src="{{ asset("storage/$article->cover") }}" alt="{{ $article->title_h1 }}" />@endif
+                                <div class="blog-title">
+                                    <h1 class="margin-top-40">{{ $article->title_h1 }}</h1>
+                                </div>
+                                {!! $article->content !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
-    </div>
+        <!--container ends-->
+    </section>
 @endsection

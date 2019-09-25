@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('title_h1');
             $table->string('slug');
             $table->text('description')->nullable();
-            $table->text('content')->nullable();
+            $table->longText('content')->nullable();
             $table->text('seo_keywords')->nullable();
             $table->text('seo_description')->nullable();
             $table->string('cover')->nullable();

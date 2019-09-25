@@ -58,7 +58,14 @@ class ArticleController extends Controller
         $section = $article->sections()->first();
         $articleAttributes = $article->attributes;
 
-        return view('frontend.articles.article', compact(
+        $tpl = 'frontend.articles.article';
+
+        if($slug == 'transportirovka')
+            $tpl = 'frontend.articles.transportirovka';
+        else if($slug == 'sotrudnichestvo' || $slug == 'kontakty')
+            $tpl = 'frontend.articles.contact';
+
+        return view($tpl, compact(
             'article',
             'images',
             'articleAttributes',
