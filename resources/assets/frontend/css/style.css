@@ -920,7 +920,6 @@ header.affix .bottom-header .navbar-default .navbar-brand .logo .secondary_text 
 	display: block;
 	z-index: 22;
 	margin-top: 0;
-	text-shadow: 0 1px 0 #000;
 	padding-top: 150px;
 	color: #fff;
 	height: 302px;
@@ -969,9 +968,9 @@ header.affix .bottom-header .navbar-default .navbar-brand .logo .secondary_text 
 .breadcrumb li, .breadcrumb li a {
 	font-size: 12px;
 	font-weight: 600;
-	color: #fff;
+	color: #000;
 }
-
+.breadcrumb>.active{color:#c7081b}
 .ribbon {
 	float: left;
 	padding-left: 15px;
@@ -7286,7 +7285,6 @@ padding: 0 10px
 
 .post-entry table td {
     padding:18px;
-    border-top: 1px solid #ffffff;
     border-bottom:1px solid #e0e0e0;
     border-left: 1px solid #e0e0e0;
     background: #fafafa;
@@ -7867,7 +7865,7 @@ a.inventory .iaai-color img{
 .rec-total-count:after { border-color: rgba(153, 153, 153, 0); border-right-color: #999; border-width: 17px; margin-top: -17px; }
 .rec-total-count:before { border-color: rgba(0, 0, 0, 0); border-right-color: #; border-width: 20px; margin-top: -20px; }
 .rec-name{text-transform:capitalize}
-.breadcrumb{border:1px solid #c7c8ca; border-radius:8px; padding:5px 10px; position:relative; margin-left:5px; font-weight:600; color:#fff; background-color:#c7081b;}
+.breadcrumb{border:1px solid #c7c8ca; border-radius:8px; padding:5px 10px; position:relative; margin-left:5px; font-weight:600; color:#fff; background-color:#f0f0f0;}
 .breadcrumb:first-child{margin-left:10px}
 .close{ margin-left:10px; cursor:pointer}
 .flexYearbox {

@@ -21,4 +21,8 @@ $(document).ready(function () {
         ],
         'sorting' : []
     });
+    CKEDITOR.replace( 'content', {
+        allowedContent: true,
+        extraAllowedContent: 'div(*)'
+    });
 });

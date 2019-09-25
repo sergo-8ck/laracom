@@ -1,20 +1,20 @@
 <!doctype html>
 <!--[if IE 7 ]>
-<html lang="en" class="ie7"> <![endif]-->
+<html lang="ru" class="ie7"> <![endif]-->
 <!--[if IE 8 ]>
-<html lang="en" class="ie8"> <![endif]-->
+<html lang="ru" class="ie8"> <![endif]-->
 <!--[if IE 9 ]>
-<html lang="en" class="ie9"> <![endif]-->
+<html lang="ru" class="ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en">
+<html lang="ru">
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <meta name="description" content="@yield('description')">
+    <meta name="author" content="Atlantic Group LLC">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     <title>{{ config('app.name') }}</title>
 
     <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->

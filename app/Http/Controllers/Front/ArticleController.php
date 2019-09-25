@@ -58,7 +58,7 @@ class ArticleController extends Controller
         $section = $article->sections()->first();
         $articleAttributes = $article->attributes;
 
-        return view('front.articles.article', compact(
+        return view('frontend.articles.article', compact(
             'article',
             'images',
             'articleAttributes',
