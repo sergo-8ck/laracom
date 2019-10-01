@@ -38,7 +38,24 @@
 @include('frontend.layouts.header')
 @yield('secondary_banner')
 @yield('content')
-@yield('before-content')
+<section class="content">
+    <div class="container">
+        <div class="inner-page full-width row">
+            <div
+                class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-left-none padding-right-none">
+                <div class="blog-content">
+                    <div class="post-entry clearfix">
+                        @yield('before-content')
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--container ends-->
+</section>
+<!--content ends-->
+<div class="clearfix"></div>
 @include('frontend.layouts.footer')
 <div class="back_to_top"><img src="{{asset('images/arrow-up.png')}}" alt="scroll up"/></div>
 

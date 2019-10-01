@@ -19,7 +19,7 @@
                                     style="color: #c7081b;">Меню</strong></h4>
                             <div class="menu-menu-sidebar-container padding-bottom-50">
                                 <ul class="menu">
-                                    <li><a href="#">Меню 1</a></li>
+                                    <li><a href="#">Мотоциклы из Америки</a></li>
                                     <li><a href="#">Меню 1</a></li>
                                     <li><a href="#">Меню 1</a></li>
                                     <li><a href="#">Меню 1</a></li>

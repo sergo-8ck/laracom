@@ -5,7 +5,9 @@
 @section('description')@if($article->seo_description){{$article->seo_description}}@else{{$article->description}}@endif
 @stop
 
-@section('seo_keywords')@if($article->seo_keywords){{$article->seo_keywords}},@endifпродажа авто Америки, автомобили из Америки, автомобили из Германии, автомобили из США,авто из Америки, авто из Германии, авто из Европы и СШАавто из США форум,авто из США, купить авто из США, машины из Америки, машины из США, мотоциклы из Америки, мотоциклы из Германии, мотоциклы из США, новые автомобили из Америки, новые авто из США, продажа автомобилей Америки, продажа автомобилей США, продажа авто США, сайт продажи авто в США, спец техника из Америки, спец техника из США@stop
+@section('seo_keywords')@if($article->seo_keywords){{$article->seo_keywords}},@endif
+@include('frontend.layouts.keywords')
+@stop
 
 
 @section('secondary_banner')

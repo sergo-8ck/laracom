@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Blog\Articles\Article;
 use App\Blog\Articles\Repositories\Interfaces\ArticleRepositoryInterface;
+use App\Blog\Questions\Question;
 use App\Http\Controllers\Controller;
 use App\Blog\Articles\Transformations\ArticleTransformable;
 
@@ -59,18 +60,25 @@ class ArticleController extends Controller
         $articleAttributes = $article->attributes;
 
         $tpl = 'frontend.articles.article';
+        $questions = [];
 
         if($slug == 'transportirovka')
             $tpl = 'frontend.articles.transportirovka';
         else if($slug == 'sotrudnichestvo' || $slug == 'kontakty')
             $tpl = 'frontend.articles.contact';
+        else if($slug == 'vopros-otvet'){
+            $tpl = 'frontend.articles.vopros-otvet';
+            $questions = Question::all();
+        }
+
 
         return view($tpl, compact(
             'article',
             'images',
             'articleAttributes',
             'section',
-            'combos'
+            'combos',
+            'questions'
         ));
     }
 }

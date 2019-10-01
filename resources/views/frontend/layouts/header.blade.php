@@ -46,11 +46,20 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav pull-right">
-                            @foreach($articles_menu as $article)
-                                <li ><a href="{{ $article->slug }}">{{ $article->name }}</a></li>
-                            @endforeach
+                            <li class="{{ (request()->is('/')) ? 'active' : '' }}"><a href="/">Главная</a></li>
+                            <li class="{{ (request()->is('mashinokomplekty')) ? 'active' : '' }}"><a href="/mashinokomplekty">Машинокомплекты</a></li>
+                            <li class="{{ (request()->is('transportirovka')) ? 'active' : '' }}"><a href="/transportirovka">Транспортировка</a></li>
+                            <li class="{{ (request()->is('kak-kupit')) ? 'active' : '' }}"><a href="/kak-kupit">Как купить</a></li>
+                            <li class="{{ (request()->is('otzyivyi')) ? 'active' : '' }}"><a href="/otzyivyi">Отзывы</a></li>
+                            <li class="dropdown">
+                                <a href="/kontakty" class="dropdown-toggle">Контакты
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li ><a href="/sotrudnichestvo">Сотрудничество</a></li>
+                                </ul>
+                            </li>
                         </ul>
-
                     </div>
                     <!-- /.navbar-collapse -->
                 </div>

@@ -125,7 +125,7 @@ class SectionRepository extends BaseRepository implements SectionRepositoryInter
 
         $merge = $collection->merge(compact('slug', 'cover', 'background'));
 
-        if (isset($params['parent'])) {
+        if (isset($params['parent']) && $params['parent'] != 0) {
             $parent = $this->findSectionById($params['parent']);
             $section->parent()->associate($parent);
         }
