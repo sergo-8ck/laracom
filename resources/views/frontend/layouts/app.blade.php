@@ -38,6 +38,7 @@
 @include('frontend.layouts.header')
 @yield('secondary_banner')
 @yield('content')
+@if (trim($__env->yieldContent('before-content')))
 <section class="content">
     <div class="container">
         <div class="inner-page full-width row">
@@ -54,6 +55,7 @@
     </div>
     <!--container ends-->
 </section>
+@endif
 <!--content ends-->
 <div class="clearfix"></div>
 @include('frontend.layouts.footer')

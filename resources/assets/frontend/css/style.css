@@ -6234,7 +6234,6 @@ div.secect_costom4 {
 }
 
 .blog-content h2, .blog-content h2 a {
-	margin: 0;
 	font-size: 28px;
 	font-weight: 600;
 	line-height: 28px;
@@ -7214,7 +7213,7 @@ padding: 0 10px
 
 /* Table */
 .post-entry table a:link {
-    color: #666;
+    color: #000;
     font-weight: bold;
     text-decoration:none;
 }
@@ -7231,7 +7230,7 @@ padding: 0 10px
 }
 
 .post-entry table {
-    color:#666;
+    color:#000;
     font-size:12px;
     text-shadow: 1px 1px 0px #fff;
     background:#eaebec;
@@ -7335,7 +7334,7 @@ background: #f5f5f5;
 .blog-content .post-entry{
 font-family: Open Sans;
     font-size: 14px;
-    color: #2d2d2d;
+    color: #000;
     line-height: 24px;
 }
 .inner-page .address{
