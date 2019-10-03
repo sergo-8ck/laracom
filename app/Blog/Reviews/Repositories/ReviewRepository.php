@@ -3,6 +3,7 @@
 namespace App\Blog\Reviews\Repositories;
 
 use App\Blog\Reviews\Repositories\Interfaces\ReviewRepositoryInterface;
+use App\Shop\Customers\Customer;
 use Jsdecena\Baserepo\BaseRepository;
 use App\Blog\Reviews\Review;
 use App\Blog\Reviews\Exceptions\ReviewInvalidArgumentException;
@@ -77,12 +78,8 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
                 $slug = str_slug($params['name']);
             }
 
-            if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
-                $cover = $this->uploadOne($params['cover'], 'reviews');
-            }
-
-            if (isset($params['background']) && ($params['background'] instanceof UploadedFile)) {
-                $background = $this->uploadOne($params['background'], 'reviews');
+            if (isset($params['images']) && ($params['images'] instanceof UploadedFile)) {
+                $background = $this->uploadOne($params['images'], 'reviews');
             }
 
             $merge = $collection->merge(compact('slug', 'cover', 'background'));
@@ -115,12 +112,8 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
         $collection = collect($params)->except('_token');
         $slug = str_slug($collection->get('name'));
 
-        if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
-            $cover = $this->uploadOne($params['cover'], 'reviews');
-        }
-
-        if (isset($params['background']) && ($params['background'] instanceof UploadedFile)) {
-            $background = $this->uploadOne($params['background'], 'reviews');
+        if (isset($params['images']) && ($params['images'] instanceof UploadedFile)) {
+            $background = $this->uploadOne($params['images'], 'reviews');
         }
 
         $merge = $collection->merge(compact('slug', 'cover', 'background'));
@@ -163,13 +156,13 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
     /**
      * Associate a article in a review
      *
-     * @param Article $article
+     * @param Customer $customer
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function associateArticle(Article $article)
+    public function associateCustomer(Customer $customer)
     {
-        return $this->model->articles()->save($article);
+        return $this->model->customer()->save($customer);
     }
 
     /**
@@ -183,24 +176,6 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
     }
 
     /**
-     * @param array $params
-     */
-    public function syncArticles(array $params)
-    {
-        $this->model->articles()->sync($params);
-    }
-
-
-    /**
-     * Detach the association of the article
-     *
-     */
-    public function detachArticles()
-    {
-        $this->model->articles()->detach();
-    }
-
-    /**
      * @param $file
      * @param null $disk
      * @return bool
@@ -208,23 +183,6 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
     public function deleteFile(array $file, $disk = null) : bool
     {
         return $this->update([$file['field'] => null], $file['review']);
-    }
-
-    /**
-     * Return the review by using the slug as the parameter
-     *
-     * @param array $slug
-     *
-     * @return Review
-     * @throws ReviewNotFoundException
-     */
-    public function findReviewBySlug(array $slug) : Review
-    {
-        try {
-            return $this->findOneByOrFail($slug);
-        } catch (ModelNotFoundException $e) {
-            throw new ReviewNotFoundException($e);
-        }
     }
 
     /**

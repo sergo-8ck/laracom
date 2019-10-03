@@ -2,6 +2,7 @@
 
 namespace App\Shop\Customers;
 
+use App\Blog\Reviews\Review;
 use App\Shop\Addresses\Address;
 use App\Shop\Orders\Order;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -64,6 +65,14 @@ class Customer extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
     /**

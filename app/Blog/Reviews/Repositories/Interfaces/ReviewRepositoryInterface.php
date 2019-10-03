@@ -2,6 +2,7 @@
 
 namespace App\Blog\Reviews\Repositories\Interfaces;
 
+use App\Shop\Customers\Customer;
 use Jsdecena\Baserepo\BaseRepositoryInterface;
 use App\Blog\Reviews\Review;
 use App\Blog\Articles\Article;
@@ -19,17 +20,9 @@ interface ReviewRepositoryInterface extends BaseRepositoryInterface
 
     public function deleteReview() : bool;
 
-    public function associateArticle(Article $article);
-
-    public function findArticles() : Collection;
-
-    public function syncArticles(array $params);
-
-    public function detachArticles();
+    public function associateCustomer(Customer $customer);
 
     public function deleteFile(array $file, $disk = null) : bool;
-
-    public function findReviewBySlug(array $slug) : Review;
 
     public function rootReviews(string $string, string $string1);
 }

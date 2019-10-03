@@ -111,6 +111,16 @@ class CustomerRepository extends BaseRepository implements CustomerRepositoryInt
     }
 
     /**
+     * Return the reviews which the review is associated with
+     *
+     * @return Collection
+     */
+    public function getReviews() : Collection
+    {
+        return $this->model->reviews()->get();
+    }
+
+    /**
      * @param Address $address
      * @return Address
      */

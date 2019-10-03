@@ -2,25 +2,24 @@
 
 namespace App\Blog\Reviews;
 
-use App\Blog\Articles\Article;
+use App\Shop\Customers\Customer;
 use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
     use NodeTrait;
-    
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name',
-        'body',
         'customer_id',
-        'article_id',
+        'body',
         'status',
+        'images',
         'parent_id'
     ];
 
@@ -31,8 +30,8 @@ class Review extends Model
      */
     protected $hidden = [];
 
-    public function articles()
+    public function customer()
     {
-        return $this->belongsToMany(Article::class, 'section_article');
+        return $this->belongsTo(Customer::class);
     }
 }

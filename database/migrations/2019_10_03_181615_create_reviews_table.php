@@ -15,10 +15,10 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->integer('customer_id')->unsigned()->index();
+            $table->foreign('customer_id')->references('id')->on('customers');
             $table->text('body')->nullable();
-            $table->integer('user_id')->nullable();
-            $table->integer('article_id')->nullable();
+            $table->integer('status')->default(0);
             $table->string('images')->nullable();
             $table->timestamps();
         });
