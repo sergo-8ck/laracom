@@ -6,6 +6,8 @@ use App\Blog\ArticleAttributes\Repositories\ArticleAttributeRepository;
 use App\Blog\ArticleAttributes\Repositories\ArticleAttributeRepositoryInterface;
 use App\Blog\Articles\Repositories\ArticleRepository;
 use App\Blog\Articles\Repositories\Interfaces\ArticleRepositoryInterface;
+use App\Blog\Reviews\Repositories\Interfaces\ReviewRepositoryInterface;
+use App\Blog\Reviews\Repositories\ReviewRepository;
 use App\Blog\Sections\Repositories\Interfaces\SectionRepositoryInterface;
 use App\Blog\Sections\Repositories\SectionRepository;
 use App\Shop\Addresses\Repositories\AddressRepository;
@@ -117,6 +119,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             SectionRepositoryInterface::class,
             SectionRepository::class
+        );
+
+        $this->app->bind(
+            ReviewRepositoryInterface::class,
+            ReviewRepository::class
         );
 
         $this->app->bind(

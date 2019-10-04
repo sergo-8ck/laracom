@@ -2,8 +2,10 @@
 
 namespace App\Blog\Reviews\Repositories;
 
+use App\Blog\ReviewImages\ReviewImage;
 use App\Blog\Reviews\Repositories\Interfaces\ReviewRepositoryInterface;
 use App\Shop\Customers\Customer;
+use Illuminate\Support\Facades\DB;
 use Jsdecena\Baserepo\BaseRepository;
 use App\Blog\Reviews\Review;
 use App\Blog\Reviews\Exceptions\ReviewInvalidArgumentException;
@@ -142,6 +144,30 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
         }
     }
 
+
+    /**
+     * Return the reviews
+     *
+     * @param int $id
+     *
+     * @return Review
+     * @throws ReviewNotFoundException
+     */
+    public function findCustomerReviewById(int $id, Customer $customer) : Review
+    {
+        try
+        {
+            return $customer
+                ->reviews()
+                ->whereId($id)
+                ->firstOrFail();
+        }
+        catch (ModelNotFoundException $e)
+        {
+            throw new ReviewNotFoundException('Review not found.');
+        }
+    }
+
     /**
      * Delete a review
      *
@@ -186,6 +212,16 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
     }
 
     /**
+     * @param string $src
+     * @return bool
+     */
+    public function deleteThumb(string $src) : bool
+    {
+        return DB::table('review_images')->where('src', $src)->delete();
+    }
+
+
+    /**
      * @return mixed
      */
     public function findParentReview()
@@ -199,5 +235,22 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
     public function findChildren()
     {
         return $this->model->children;
+    }
+
+    /**
+     * @param Collection $collection
+     *
+     * @return void
+     */
+    public function saveReviewImages(Collection $collection)
+    {
+        $collection->each(function (UploadedFile $file) {
+            $filename = $this->storeFile($file, 'reviews');
+            $reviewImage = new ReviewImage([
+                'article_id' => $this->model->id,
+                'src' => $filename
+            ]);
+            $this->model->images()->save($reviewImage);
+        });
     }
 }

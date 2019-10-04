@@ -105,6 +105,9 @@ Route::namespace('Front')->group(function () {
         Route::get('checkout/cancel', 'CheckoutController@cancel')->name('checkout.cancel');
         Route::get('checkout/success', 'CheckoutController@success')->name('checkout.success');
         Route::resource('customer.address', 'CustomerAddressController');
+        Route::resource('customer.review', 'CustomerReviewController');
+        Route::get('remove-image-review', 'CustomerReviewController@removeImage')->name('review.remove.image');
+        Route::get('remove-image-thumb', 'CustomerReviewController@removeThumbnail')->name('review.remove.thumb');
     });
     Route::resource('cart', 'CartController');
     Route::get("category/{slug}", 'CategoryController@getCategory')->name('front.section.slug');

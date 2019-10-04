@@ -20,6 +20,7 @@
                         <li role="presentation" @if(request()->input('tab') == 'profile') class="active" @endif><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
                         <li role="presentation" @if(request()->input('tab') == 'orders') class="active" @endif><a href="#orders" aria-controls="orders" role="tab" data-toggle="tab">Orders</a></li>
                         <li role="presentation" @if(request()->input('tab') == 'address') class="active" @endif><a href="#address" aria-controls="address" role="tab" data-toggle="tab">Addresses</a></li>
+                        <li role="presentation" @if(request()->input('tab') == 'reviews') class="active" @endif><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a></li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -120,21 +121,21 @@
                             </div>
                             @if(!$addresses->isEmpty())
                                 <table class="table">
-                                <thead>
+                                    <thead>
                                     <th>Alias</th>
                                     <th>Address 1</th>
                                     <th>Address 2</th>
                                     <th>City</th>
                                     @if(isset($address->province))
-                                    <th>Province</th>
+                                        <th>Province</th>
                                     @endif
                                     <th>State</th>
                                     <th>Country</th>
                                     <th>Zip</th>
                                     <th>Phone</th>
                                     <th>Actions</th>
-                                </thead>
-                                <tbody>
+                                    </thead>
+                                    <tbody>
                                     @foreach($addresses as $address)
                                         <tr>
                                             <td>{{$address->alias}}</td>
@@ -142,7 +143,7 @@
                                             <td>{{$address->address_2}}</td>
                                             <td>{{$address->city}}</td>
                                             @if(isset($address->province))
-                                            <td>{{$address->province->name}}</td>
+                                                <td>{{$address->province->name}}</td>
                                             @endif
                                             <td>{{$address->state_code}}</td>
                                             <td>{{$address->country->name}}</td>
@@ -160,10 +161,45 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
                             @else
                                 <br /> <p class="alert alert-warning">No address created yet.</p>
+                            @endif
+                        </div>
+                        <div role="tabpanel" class="tab-pane @if(request()->input('tab') == 'reviews')active @endif" id="reviews">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="{{ route('customer.review.create', auth()->user()->id) }}" class="btn btn-primary">Create your review</a>
+                                </div>
+                            </div>
+                            @if(!$reviews->isEmpty())
+                                <table class="table">
+                                    <thead>
+                                    <th>Отзыв</th>
+                                    <th>Действие</th>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($reviews as $review)
+                                        <tr>
+                                            <td><a href="{{ route('customer.review.edit', [auth()->user()->id, $review->id]) }}">{{str_limit($review->body, $limit = 50, $end = '...')}}</a></td>
+                                            <td>
+                                                <form method="post" action="{{ route('customer.review.destroy', [auth()->user()->id, $review->id]) }}" class="form-horizontal">
+                                                    <div class="btn-group">
+                                                        <input type="hidden" name="_method" value="delete">
+                                                        {{ csrf_field() }}
+                                                        <a href="{{ route('customer.review.edit', [auth()->user()->id, $review->id]) }}" class="btn btn-primary"> <i class="fa fa-pencil"></i> Edit</a>
+                                                        <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger"> <i class="fa fa-trash"></i> Delete</button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <br /> <p class="alert alert-warning">No reviews created yet.</p>
                             @endif
                         </div>
                     </div>

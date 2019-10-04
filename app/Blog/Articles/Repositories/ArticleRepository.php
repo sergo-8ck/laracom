@@ -226,7 +226,7 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
     public function saveArticleImages(Collection $collection)
     {
         $collection->each(function (UploadedFile $file) {
-            $filename = $this->storeFile($file);
+            $filename = $this->storeFile($file, 'articles');
             $articleImage = new ArticleImage([
                 'article_id' => $this->model->id,
                 'src' => $filename

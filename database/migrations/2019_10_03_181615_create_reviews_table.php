@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Kalnoy\Nestedset\NestedSet;
 
 class CreateReviewsTable extends Migration
 {
@@ -21,6 +22,7 @@ class CreateReviewsTable extends Migration
             $table->integer('status')->default(0);
             $table->string('images')->nullable();
             $table->timestamps();
+            NestedSet::columns($table);
         });
     }
 

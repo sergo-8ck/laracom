@@ -5,7 +5,6 @@ namespace App\Blog\Reviews\Repositories\Interfaces;
 use App\Shop\Customers\Customer;
 use Jsdecena\Baserepo\BaseRepositoryInterface;
 use App\Blog\Reviews\Review;
-use App\Blog\Articles\Article;
 use Illuminate\Support\Collection;
 
 interface ReviewRepositoryInterface extends BaseRepositoryInterface
@@ -17,6 +16,8 @@ interface ReviewRepositoryInterface extends BaseRepositoryInterface
     public function updateReview(array $params) : Review;
 
     public function findReviewById(int $id) : Review;
+
+    public function findCustomerReviewById(int $id, Customer $customer) : Review;
 
     public function deleteReview() : bool;
 

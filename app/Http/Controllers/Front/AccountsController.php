@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Blog\Reviews\Repositories\Interfaces\ReviewRepositoryInterface;
 use App\Shop\Couriers\Repositories\Interfaces\CourierRepositoryInterface;
 use App\Shop\Customers\Repositories\CustomerRepository;
 use App\Shop\Customers\Repositories\Interfaces\CustomerRepositoryInterface;
@@ -24,17 +25,25 @@ class AccountsController extends Controller
     private $courierRepo;
 
     /**
+     * @var ReviewRepositoryInterface
+     */
+    private $reviewRepo;
+
+    /**
      * AccountsController constructor.
      *
      * @param CourierRepositoryInterface $courierRepository
      * @param CustomerRepositoryInterface $customerRepository
+     * @param ReviewRepositoryInterface $reviewRepository
      */
     public function __construct(
         CourierRepositoryInterface $courierRepository,
-        CustomerRepositoryInterface $customerRepository
+        CustomerRepositoryInterface $customerRepository,
+        ReviewRepositoryInterface $reviewRepository
     ) {
         $this->customerRepo = $customerRepository;
         $this->courierRepo = $courierRepository;
+        $this->reviewRepo = $reviewRepository;
     }
 
     public function index()
@@ -52,10 +61,13 @@ class AccountsController extends Controller
 
         $addresses = $customerRepo->findAddresses();
 
+        $reviews = $customerRepo->getReviews();
+
         return view('front.accounts', [
             'customer' => $customer,
             'orders' => $this->customerRepo->paginateArrayResults($orders->toArray(), 15),
-            'addresses' => $addresses
+            'addresses' => $addresses,
+            'reviews' => $reviews,
         ]);
     }
 }
