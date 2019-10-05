@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Blog\Articles\Article;
 use App\Blog\Articles\Repositories\Interfaces\ArticleRepositoryInterface;
 use App\Blog\Questions\Question;
+use App\Blog\Reviews\Review;
 use App\Http\Controllers\Controller;
 use App\Blog\Articles\Transformations\ArticleTransformable;
 
@@ -70,7 +71,10 @@ class ArticleController extends Controller
             $tpl = 'frontend.articles.vopros-otvet';
             $questions = Question::all();
         }
-
+        else if($slug == 'otzyivyi'){
+            $tpl = 'frontend.articles.otzyivyi';
+            $reviews = Review::get()->toTree();
+        }
 
         return view($tpl, compact(
             'article',
@@ -78,7 +82,8 @@ class ArticleController extends Controller
             'articleAttributes',
             'section',
             'combos',
-            'questions'
+            'questions',
+            'reviews'
         ));
     }
 }

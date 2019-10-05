@@ -14,5 +14,5 @@
 @endsection
 
 @section('content')
-    @include('frontend.layouts.content_question')
+    @include('frontend.layouts.content_reviews')
 @endsection
