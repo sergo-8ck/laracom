@@ -8159,3 +8159,7 @@ label.label-not-required{font-weight:400}
 	height: 90px;
 	background: url(../images/copart-logo.png) center top no-repeat;
 }
+.box-img{
+	padding-bottom: 20px;
+	padding-top: 20px;
+}

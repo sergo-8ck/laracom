@@ -73,6 +73,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['employee'], 'as' => 'admin.
     });
 });
 
+
+Route::namespace('Frontend')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('otzyivyi', 'ReviewController');
+//    Route::get("otzyivyi", 'ReviewController@index')->name('front.get.review');
+});
+
 /**
  * Frontend routes
  */
@@ -113,8 +120,4 @@ Route::namespace('Front')->group(function () {
     Route::get("category/{slug}", 'CategoryController@getCategory')->name('front.section.slug');
     Route::get("search", 'ArticleController@search')->name('search.article');
     Route::get("{article}", 'ArticleController@show')->name('front.get.article');
-});
-
-Route::namespace('Frontend')->group(function () {
-    Route::get('/', 'HomeController@index')->name('home');
 });

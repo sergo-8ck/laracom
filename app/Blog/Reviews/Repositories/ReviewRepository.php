@@ -88,7 +88,7 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
 
             $review = new Review($merge->all());
 
-            if (isset($params['parent'])) {
+            if ($params['parent']) {
                 $parent = $this->findReviewById($params['parent']);
                 $review->parent()->associate($parent);
             }

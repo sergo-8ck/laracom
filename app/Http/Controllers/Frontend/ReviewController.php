@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Frontend;
 
+use App\Blog\Articles\Repositories\Interfaces\ArticleRepositoryInterface;
+use App\Blog\Reviews\Review;
 use App\Http\Controllers\Controller;
 use App\Blog\Reviews\Requests\CreateReviewRequest;
 use App\Blog\Reviews\Requests\UpdateReviewRequest;
@@ -12,7 +14,7 @@ use App\Shop\Countries\Repositories\Interfaces\CountryRepositoryInterface;
 use App\Shop\Provinces\Repositories\Interfaces\ProvinceRepositoryInterface;
 use Illuminate\Http\Request;
 
-class CustomerReviewController extends Controller
+class ReviewController extends Controller
 {
     /**
      * @var ReviewRepositoryInterface
@@ -20,37 +22,29 @@ class CustomerReviewController extends Controller
     private $reviewRepo;
 
     /**
-     * @var CountryRepositoryInterface
-     */
-    private $countryRepo;
-
-    /**
-     * @var CityRepositoryInterface
-     */
-    private $cityRepo;
-
-    /**
      * @var ProvinceRepositoryInterface
      */
     private $provinceRepo;
 
+    /**
+     * @var ArticleRepositoryInterface
+     */
+    private $articleRepo;
+
 
     /**
      * @param ReviewRepositoryInterface  $reviewRepository
-     * @param CountryRepositoryInterface  $countryRepository
-     * @param CityRepositoryInterface     $cityRepository
      * @param ProvinceRepositoryInterface $provinceRepository
+     * @param ArticleRepositoryInterface $articleRepository
      */
     public function __construct(
         ReviewRepositoryInterface $reviewRepository,
-        CountryRepositoryInterface $countryRepository,
-        CityRepositoryInterface $cityRepository,
-        ProvinceRepositoryInterface $provinceRepository
+        ProvinceRepositoryInterface $provinceRepository,
+        ArticleRepositoryInterface $articleRepository
     ) {
         $this->reviewRepo = $reviewRepository;
-        $this->countryRepo = $countryRepository;
         $this->provinceRepo = $provinceRepository;
-        $this->cityRepo = $cityRepository;
+        $this->articleRepo = $articleRepository;
     }
 
     /**
@@ -58,8 +52,20 @@ class CustomerReviewController extends Controller
      */
     public function index()
     {
+        $article = $this->articleRepo->findArticleBySlug(['slug' => 'otzyivyi']);
+        $images = $article->images()->get();
+        $section = $article->sections()->first();
 
-        return redirect()->route('accounts', ['tab' => 'review']);
+        $tpl = 'frontend.articles.otzyivyi';
+        $reviews = Review::get()->toTree();
+
+        return view($tpl, compact(
+            'article',
+            'images',
+            'section',
+            'combos',
+            'reviews'
+        ));
     }
 
     /**
@@ -71,7 +77,7 @@ class CustomerReviewController extends Controller
         $customer = auth()->user();
 
         return view('front.customers.reviews.create', [
-            'customer' => $customer
+            'customer' => $customer,
         ]);
     }
 
@@ -91,57 +97,8 @@ class CustomerReviewController extends Controller
             $reviewRepo->saveReviewImages(collect($request->file('image')));
         }
 
-        return redirect()->route('accounts', ['tab' => 'review'])
+        return redirect()->route('otzyivyi.index')
                          ->with('message', 'Review creation successful');
-    }
-
-    /**
-     * @param $reviewId
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit($customerId, $reviewId)
-    {
-        $review = $this->reviewRepo->findCustomerReviewById($reviewId, auth()->user());
-
-        return view('front.customers.reviews.edit', [
-            'customer' => auth()->user(),
-            'review' => $review,
-            'images' => $review->images()->get(['src'])
-        ]);
-    }
-
-    /**
-     * @param UpdateReviewRequest $request
-     * @param                     $customerId
-     * @param                     $reviewId
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \App\Blog\Reviews\Exceptions\ReviewNotFoundException
-     */
-    public function update(UpdateReviewRequest $request, $customerId, $reviewId)
-    {
-        $review = $this->reviewRepo->findCustomerReviewById($reviewId, auth()->user());
-
-//        $request = $request->except('_token', '_method');
-        $data = $request->except(
-            '_token',
-            '_method',
-            'image'
-        );
-        $data['customer_id'] = auth()->user()->id;
-
-        $reviewRepo = new ReviewRepository($review);
-
-        if ($request->hasFile('image')) {
-            $reviewRepo->saveReviewImages(collect($request->file('image')));
-        }
-
-        $reviewRepo = new ReviewRepository($review);
-        $reviewRepo->updateReview($data);
-
-        return redirect()->route('accounts', ['tab' => 'review'])
-                         ->with('message', 'Review update successful');
     }
 
     /**
@@ -150,15 +107,15 @@ class CustomerReviewController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($customerId, $reviewId)
+    public function destroy($reviewId)
     {
         $review = $this->reviewRepo->findCustomerReviewById($reviewId, auth()->user());
 
         $articleRepo = new ReviewRepository($review);
         $articleRepo->deleteReview();
 
-        return redirect()->route('accounts', ['tab' => 'reviews'])
-                         ->with('message', 'Review delete successful');
+        return redirect()->route('otzyivyi.index')
+                         ->with('message', 'Review deleted successful');
     }
 
     /**

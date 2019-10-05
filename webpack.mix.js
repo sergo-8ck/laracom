@@ -100,6 +100,7 @@ mix.
       'resources/assets/frontend/css/settings.css',
       'resources/assets/frontend/css/animate.min.css',
       'resources/assets/frontend/css/ts.css',
+      'resources/assets/frontend/css/default.css',
     ], 'public/css/index.css')
 
   .scripts([
