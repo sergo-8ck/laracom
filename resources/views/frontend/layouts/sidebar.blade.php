@@ -7,16 +7,7 @@
             </div>
             <input type="submit" value="Поиск" class="margin-top-10 margin-bottom-none md-button">
         </form>
-        <div class="menu-menu-sidebar-container padding-bottom-50">
-            <ul class="menu">
-                <li><a href="#">Меню 1</a></li>
-                <li><a href="#">Меню 1</a></li>
-                <li><a href="#">Меню 1</a></li>
-                <li><a href="#">Меню 1</a></li>
-                <li><a href="#">Меню 1</a></li>
-                <li><a href="#">Меню 1</a></li>
-            </ul>
-        </div>
+        @include('frontend.layouts.menu')
         <div class="list padding-bottom-50">
             <h3 class="margin-bottom-25">Отзывы</h3>
             <div class="testimonial">

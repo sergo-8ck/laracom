@@ -18,12 +18,7 @@
                             <h4 class="margin-bottom-25 margin-top-none"><strong
                                     style="color: #c7081b;">Меню</strong></h4>
                             <div class="menu-menu-sidebar-container padding-bottom-50">
-                                <ul class="menu">
-                                    <li><a href="#">Мотоциклы из Америки</a></li>
-                                    <li><a href="#">Меню 1</a></li>
-                                    <li><a href="#">Меню 1</a></li>
-                                    <li><a href="#">Меню 1</a></li>
-                                </ul>
+                                @include('frontend.layouts.menu')
                             </div>
                         </div>
                     </div>
@@ -66,16 +61,7 @@
                             <h4 class="margin-bottom-25 margin-top-none"><strong
                                     style="color: #c7081b;">Меню</strong></h4>
                             <div class="menu-menu-sidebar-container padding-bottom-50">
-                                <ul class="menu">
-                                    <li><a href="#">ATVs </a>
-                                    </li>
-                                    <li><a href="#">Automobiles </a>
-                                    </li>
-                                    <li><a href="#">Boats </a>
-                                    </li>
-                                    <li><a href="#">Dirt
-                                            Bikes </a></li>
-                                </ul>
+                                @include('frontend.layouts.menu')
                             </div>
                         </div>
                     </div>
@@ -121,24 +107,7 @@
                             <h4 class="margin-bottom-25 margin-top-none"><strong
                                     style="color: #c7081b;">Меню</strong></h4>
                             <div class="menu-menu-sidebar-container padding-bottom-50">
-                                <ul class="menu">
-                                    <li>
-                                        <a href="#">Автомобили</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Автомобили</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Автомобили</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Автомобили</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Автомобили</a>
-                                    </li>
-
-                                </ul>
+                                @include('frontend.layouts.menu')
                             </div>
                         </div>
                     </div>

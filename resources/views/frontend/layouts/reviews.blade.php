@@ -105,7 +105,7 @@
             </div>
         </div>
         @else
-            <p><a href="{{ route('login') }}">Авторизируйтесь</a>, чтобы оставить отзыв.</p>
+            <p class="leave-comments"><a href="{{ route('login') }}">Авторизируйтесь</a>, чтобы оставить отзыв.</p>
         @endif
     </div>
     <div id="comments-tpanel">
