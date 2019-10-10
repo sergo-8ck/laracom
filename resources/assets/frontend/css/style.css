@@ -6296,7 +6296,6 @@ div.secect_costom4 {
 }
 
 .blog-content h2, .blog-content h2 a {
-	margin: 0;
 	font-size: 28px;
 	font-weight: 600;
 	line-height: 28px;
@@ -6309,14 +6308,10 @@ div.secect_costom4 {
 }
 
 .blog-content ul {
-	padding: 0;
-	margin: 0;
 	margin-top: 10px;
 }
 
 .blog-content ul li {
-	list-style: none;
-	display: inline-block;
 	color: #2e2e2e;
 	padding-right: 20px;
 	font-size: 14px;
@@ -7108,4 +7103,28 @@ div.example-tabs .nav-tabs>a {
 	color: #2D2D2D;
 	padding-top: 60px;
 	margin-top: 0;
+}
+table{
+	margin: 20px 5px;
+}
+th {
+	font-size: 13px;
+	font-weight: normal;
+	background: #b9c9fe;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+	color: #039;
+	padding: 8px;
+}
+td {
+	background: #e8edff;
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid transparent;
+	padding: 8px;
+}
+tr:hover td {background: #ccddff;}
+
+div.address {
+	width: 47%;
 }

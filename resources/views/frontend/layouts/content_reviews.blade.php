@@ -9,7 +9,7 @@
                     <div class="post-entry clearfix">
                         <div class="col-lg-12"> @if($article->cover)<img src="{{ asset("storage/$article->cover") }}" alt="{{ $article->title_h1 }}" />@endif
                             <div class="blog-title">
-                                <h1 class="margin-top-40">{{ $article->title_h1 }}</h1>
+                                <h1>{{ $article->title_h1 }}</h1>
                             </div>
                             {!! $article->content !!}
                             @include('frontend.layouts.reviews')

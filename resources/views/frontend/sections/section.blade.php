@@ -34,7 +34,7 @@
                         <div class="post-entry clearfix">
                             <div class="col-lg-12"> @if($section->cover)<img src="{{ asset("storage/$section->cover") }}" alt="{{ $section->title_h1 }}" />@endif
                                 <div class="blog-title">
-                                    <h1 class="margin-top-40">{{ $section->title_h1 }}</h1>
+                                    <h1>{{ $section->title_h1 }}</h1>
                                 </div>
                                 {!! $section->content !!}
                             </div>

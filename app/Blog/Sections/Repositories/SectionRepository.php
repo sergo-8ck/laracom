@@ -77,6 +77,8 @@ class SectionRepository extends BaseRepository implements SectionRepositoryInter
                 $slug = str_slug($params['name']);
             }
 
+            $title_h1 = $data['title'] ?? $params('title_h1');
+
             if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
                 $cover = $this->uploadOne($params['cover'], 'sections');
             }
@@ -85,7 +87,7 @@ class SectionRepository extends BaseRepository implements SectionRepositoryInter
                 $background = $this->uploadOne($params['background'], 'sections');
             }
 
-            $merge = $collection->merge(compact('slug', 'cover', 'background'));
+            $merge = $collection->merge(compact('slug', 'cover', 'background', 'title_h1'));
 
             $section = new Section($merge->all());
 
@@ -113,7 +115,6 @@ class SectionRepository extends BaseRepository implements SectionRepositoryInter
     {
         $section = $this->findSectionById($this->model->id);
         $collection = collect($params)->except('_token');
-        $slug = str_slug($collection->get('name'));
 
         if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
             $cover = $this->uploadOne($params['cover'], 'sections');
@@ -123,7 +124,7 @@ class SectionRepository extends BaseRepository implements SectionRepositoryInter
             $background = $this->uploadOne($params['background'], 'sections');
         }
 
-        $merge = $collection->merge(compact('slug', 'cover', 'background'));
+        $merge = $collection->merge(compact('cover', 'background'));
 
         if (isset($params['parent']) && $params['parent'] != 0) {
             $parent = $this->findSectionById($params['parent']);
