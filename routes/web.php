@@ -117,7 +117,8 @@ Route::namespace('Front')->group(function () {
         Route::get('remove-image-thumb', 'CustomerReviewController@removeThumbnail')->name('review.remove.thumb');
     });
     Route::resource('cart', 'CartController');
-    Route::get("category/{slug}", 'CategoryController@getCategory')->name('front.section.slug');
+//    Route::get("category/{slug}", 'CategoryController@getCategory')->name('front.section.slug');
+    Route::get("section/{slug}", 'SectionController@getSection')->name('front.section.slug');
     Route::get("search", 'ArticleController@search')->name('search.article');
     Route::get("{article}", 'ArticleController@show')->name('front.get.article');
 });

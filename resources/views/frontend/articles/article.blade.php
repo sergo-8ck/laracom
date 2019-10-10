@@ -10,7 +10,7 @@
 @stop
 
 @section('secondary_banner')
-    @include('frontend.layouts.secondary')
+    @include('frontend.layouts.secondary', ['article' => $article])
 @endsection
 
 @section('content')
