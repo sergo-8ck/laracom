@@ -1666,7 +1666,7 @@ footer .default-btn:active, footer .btn-inventory:active, footer button:active, 
 
 .latest-tweet > div > p {
 	color: #fff;
-	padding-left: 27px;
+	/*padding-left: 27px;*/
 	line-height: 24px;
 }
 
@@ -6660,7 +6660,7 @@ img.aligncenter {
 }
 
 .form_contact form input[type="text"], .form_contact form input[type="email"] {
-	width: 58%;
+	width: 100%;
 }
 
 .form_contact form input[type="text"], .form_contact form input[type="email"], .form_contact form textarea {
@@ -7127,4 +7127,53 @@ tr:hover td {background: #ccddff;}
 
 div.address {
 	width: 47%;
+}
+
+.contact_wrapper input[type=text], select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.contact_wrapper input[type=submit] {
+	width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.contact_wrapper input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+.contact_wrapper .form-group {
+	overflow: hidden;
+	border-radius: 5px;
+	padding: 5px 20px 0;
+}
+
+.bd-example {
+	background-color: #f2f2f2;
+	padding: 20px 10px;
+}
+
+.contact_wrapper label:before {
+	content: none;
+}
+.contact_wrapper input[type="email"]{
+	width: 100%;
+}
+.contact_wrapper label{
+	position: relative;
+}
+.form-group{
+	margin-bottom: 0;
 }
