@@ -110,15 +110,17 @@ jQuery(document).ready( function($){
 	// testimonial slider
 	if($(".testimonial_slider").length){
 		$('.testimonial_slider').bxSlider({
-			mode: 'horizontal',
-			slideMargin: 3,
+			mode: 'fade',
 			minSlides: 1,
-			maxSlides: 1,
+			maxSlides: 10,
+			moveSlides: 2,
 			auto: true,
 			autoHover: true,
 			speed: 500,
 			pager: false,
-			controls: false
+			controls: false,
+			hideControlOnEnd: true,
+			adaptiveHeight: true
 		});
 	}
 	

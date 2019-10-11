@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Blog\Reviews\Repositories\ReviewRepository;
+use App\Blog\Reviews\Review;
 use App\Blog\Sections\Repositories\SectionRepository;
 use App\Shop\Carts\Repositories\CartRepository;
 use App\Shop\Carts\ShoppingCart;
@@ -41,6 +43,10 @@ class GlobalTemplateServiceProvider extends ServiceProvider
             $view->with('categories', $this->getCategories());
             $view->with('sections', $this->getSections());
             $view->with('cartCount', $this->getCartCount());
+        });
+
+        view()->composer(['frontend.layouts.testimonials'], function ($view) {
+            $view->with('reviews', $this->getReviews());
         });
 
         /**
@@ -101,6 +107,15 @@ class GlobalTemplateServiceProvider extends ServiceProvider
     {
         $cartRepo = new CartRepository(new ShoppingCart);
         return $cartRepo->countItems();
+    }
+    /**
+     * @return int
+     */
+    private function getReviews()
+    {
+        $reviewRepo = new ReviewRepository(new Review());
+        $reviews = $reviewRepo->listReview()->whereIn('parent_id', [0])->take(10);
+        return $reviews;
     }
 
     /**

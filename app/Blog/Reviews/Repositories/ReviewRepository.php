@@ -43,7 +43,7 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
      */
     public function listReview(string $order = 'id', string $sort = 'desc', $except = []) : Collection
     {
-        return $this->model->orderBy($order, $sort)->get()->except($except);
+        return $this->model->query()->orderBy($order, $sort)->get()->except($except);
     }
 
     /**
