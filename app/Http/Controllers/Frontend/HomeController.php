@@ -35,6 +35,10 @@ class HomeController
             'slug' => 'glavnaya'
         ]);
 
-        return view('frontend.pages.index', compact('article'));
+        $uvedomlenie = $this->articleRepo->findArticleBySlug([
+            'slug' => 'uvedomlenie'
+        ]);
+
+        return view('frontend.pages.index', compact('article', 'uvedomlenie'));
     }
 }

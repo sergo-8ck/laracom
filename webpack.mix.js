@@ -128,7 +128,8 @@ mix.
       'resources/assets/frontend/js/jquery.bxslider.js',
       'resources/assets/frontend/js/jquery.selectbox-0.2.js',
       'resources/assets/frontend/js/jquery.mousewheel.js',
-      'resources/assets/frontend/js/jquery.easing.js'
+      'resources/assets/frontend/js/jquery.easing.js',
+      'resources/assets/frontend/js/jquery.cookie.js'
     ], 'public/js/index_b.js')
 
     .copy('resources/assets/frontend/fonts', 'public/fonts')

@@ -7085,7 +7085,7 @@ div.example-tabs .nav-tabs>a {
 	list-style: none;
 }
 
-.menu-menu-sidebar-container ul li:hover {
+.menu-menu-sidebar-container ul li.active, .menu-menu-sidebar-container ul li:hover {
 	color: rgb(255, 255, 255);
 	background: rgb(220, 220, 220);
 }
@@ -7141,7 +7141,7 @@ div.address {
 
 .contact_wrapper input[type=submit] {
 	width: 100%;
-	background-color: #4CAF50;
+	background-color: #c7081b;
 	color: white;
 	padding: 14px 20px;
 	margin: 8px 0;
@@ -7151,7 +7151,7 @@ div.address {
 }
 
 .contact_wrapper input[type=submit]:hover {
-	background-color: #45a049;
+	background-color: #E3404F;
 }
 
 .contact_wrapper .form-group {
@@ -7176,4 +7176,8 @@ div.address {
 }
 .form-group{
 	margin-bottom: 0;
+}
+#uvedomlenie{
+	padding: 0 10px;
+	text-align: justify;
 }

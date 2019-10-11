@@ -16,6 +16,10 @@
         <div class="container">
             <div class="row">
                 <h2 class="col-lg-9 col-md-8 col-sm-12 col-xs-12 xs-padding-left-15">Позвольте найти для вас идеальный <span class="alternate-font">автомобиль</span></h2>
+                <div id="uvedomlenie" class="fancybox" style="display: none;">
+                    <h2>{{ $uvedomlenie->title_h1 }}</h2>
+                    {!! $uvedomlenie->content !!}
+                </div>
                 <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 xs-padding-right-15"> <a href="#" class="default-btn pull-right action_button lg-button">Искать</a> </div>
             </div>
         </div>
