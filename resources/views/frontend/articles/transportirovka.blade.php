@@ -128,21 +128,11 @@
         <tbody>
         <tr>
             <th><strong>Место стоянки авто</strong></th>
-            <th><strong>Стоимость</strong><strong>перевозки мотоцикла
-                    в </strong><strong>порт
-                    отгрузки,$</strong></th>
-            <th><strong>Стоимость</strong><strong>перевозки в порт </strong><strong>отгрузки,$
-                    Truck
-                    pickup+200</strong></th>
-            <th><strong>Перовозка до</strong><strong>Клайпеды от</strong>
-                <strong>порта отгрузки,$
-                    Truck pickupх2</strong></th>
-            <th><strong>Перевозка до</strong> <strong>Минска от
-                    порта </strong><strong>отгрузки,$
-                    Truck pickupх2</strong></th>
-            <th><strong>Перевозка до</strong> <strong>Поти от
-                    порта </strong><strong>отгрузки,$
-                    Truck pickupx2</strong></th>
+            <th><strong>Стоимость перевозки мотоцикла в порт отгрузки, $</strong></th>
+            <th><strong>Стоимость перевозки в порт отгрузки, $ Truck pickup +200</strong></th>
+            <th><strong>Перовозка до Клайпеды от порта отгрузки, $ Truck pickup х2</strong></th>
+            <th><strong>Перевозка до Минска от порта отгрузки, $ Truck pickup х2</strong></th>
+            <th><strong>Перевозка до Поти от порта отгрузки, $ Truck pickup x2</strong></th>
         </tr>
         <tr>
             <td><strong>Abilene</strong></td>

@@ -14,7 +14,7 @@
                 <td>{{ $article->id }}</td>
                 <td>
                     @if($admin->hasPermission('view-article'))
-                        <a href="{{ route('admin.articles.show', $article->id) }}">{{ $article->name }}</a>
+                        <a href="{{ route('admin.articles.edit', $article->id) }}">{{ $article->name }}</a>
                     @else
                         {{ $article->name }}
                     @endif
