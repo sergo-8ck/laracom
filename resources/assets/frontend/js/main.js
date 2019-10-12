@@ -57,6 +57,14 @@ jQuery(document).ready( function($){
 		return val;
 	}
 
+	$(".post-entry img").each(function() {
+		var src = $(this).attr('src');
+		$(this).wrap($('<a>',{
+			href: src,
+			class: 'fancybox'
+		}));
+	});
+
 	if($("div.inventory").length){
 		//$("div.inventory").evenElements();
 	}
