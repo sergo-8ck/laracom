@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Blog\Articles\Article;
+use App\Blog\Articles\Repositories\ArticleRepository;
 use App\Blog\Reviews\Repositories\ReviewRepository;
 use App\Blog\Reviews\Review;
 use App\Blog\Sections\Repositories\SectionRepository;
@@ -47,6 +49,10 @@ class GlobalTemplateServiceProvider extends ServiceProvider
 
         view()->composer(['frontend.layouts.testimonials'], function ($view) {
             $view->with('reviews', $this->getReviews());
+        });
+
+        view()->composer(['frontend.pages.index'], function ($view) {
+            $view->with('arts', $this->getArticles());
         });
 
         /**
@@ -108,8 +114,9 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         $cartRepo = new CartRepository(new ShoppingCart);
         return $cartRepo->countItems();
     }
+
     /**
-     * @return int
+     * @return \Illuminate\Support\Collection
      */
     private function getReviews()
     {
@@ -118,6 +125,15 @@ class GlobalTemplateServiceProvider extends ServiceProvider
         return $reviews;
     }
 
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    private function getArticles()
+    {
+        $articleRepo = new ArticleRepository(new Article());
+        $articles = $articleRepo->listArticles()->random(3);
+        return $articles;
+    }
     /**
      * @param Employee $employee
      * @return bool
